@@ -1,12 +1,24 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
+// Declare app level module which depends on filters, and services
 angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+    'myApp.config',
+    'myApp.security',
+    'myApp.home',
+    'myApp.account',
+    'myApp.chat',
+    'myApp.login'
+  ])
+  
+  .config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.otherwise({
+      redirectTo: '/home'
+    });
+  }])
+  
+  .run(['$rootScope', 'Auth', function($rootScope, Auth) {
+    // track status of authentication
+    Auth.$onAuth(function(user) {
+      $rootScope.loggedIn = !!user;
+    });
+  }]);
