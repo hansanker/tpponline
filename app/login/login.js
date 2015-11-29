@@ -26,49 +26,6 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
 
 
-    var ref = new Firebase(FBURL);
-    var USERS_LOCATION = FBURL + '/users';
-    $scope.auth = $firebaseAuth(ref);
-   
-    //social login
-    $scope.auth.$onAuth(function (authdata) {
-        $scope.user = authdata;
-
-        if (authdata) {
-            tryCreateUser($scope.user.uid, { name: 'hans', pic: 'testsdfscs' });
-            $location.path('/groupAndStudent');
-        }
-    });
-
-
-   function userCreated(userId, success) {
-        if (!success) {
-            console.log('user ' + userId + ' already exists!');
-        } else {
-            console.log('Successfully created ' + userId);
-        }
-    }
-
-    // Tries to set /users/<userId> to the specified data, but only
-    // if there's no data there already.
-    function tryCreateUser(userId, userData) {
-        var usersRef = new Firebase(USERS_LOCATION);
-        usersRef.child(userId).transaction(function (currentUserData) {
-            if (currentUserData === null)
-                return userData;
-        }, function (error, committed) {
-            userCreated(userId, committed);
-        });
-    }
-
-
-
-
-
-
-
-
-
 
 
     $scope.createAccount = function () {
