@@ -1,78 +1,125 @@
 "use strict";
 angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
-  .config(['$routeProvider', function($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
       controller: 'LoginCtrl',
       templateUrl: 'login/login.html'
     });
   }])
 
-  .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', function($scope, Auth, $location, fbutil) {
+  .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', function ($scope, Auth, $location, fbutil) {
     $scope.email = null;
     $scope.pass = null;
     $scope.confirm = null;
     $scope.createMode = false;
 
-    $scope.login = function(email, pass) {
+    $scope.login = function (email, pass) {
       $scope.err = null;
-      Auth.$authWithPassword({ email: email, password: pass }, {rememberMe: true})
-        .then(function(/* user */) {
+      Auth.$authWithPassword({ email: email, password: pass }, { rememberMe: true })
+        .then(function (/* user */) {
           $location.path('/account');
-        }, function(err) {
+        }, function (err) {
           $scope.err = errMessage(err);
         });
     };
 
-    $scope.createAccount = function() {
+
+
+    var ref = new Firebase(FBURL);
+    var USERS_LOCATION = FBURL + '/users';
+    $scope.auth = $firebaseAuth(ref);
+   
+    //social login
+    $scope.auth.$onAuth(function (authdata) {
+        $scope.user = authdata;
+
+        if (authdata) {
+            tryCreateUser($scope.user.uid, { name: 'hans', pic: 'testsdfscs' });
+            $location.path('/groupAndStudent');
+        }
+    });
+
+
+   function userCreated(userId, success) {
+        if (!success) {
+            console.log('user ' + userId + ' already exists!');
+        } else {
+            console.log('Successfully created ' + userId);
+        }
+    }
+
+    // Tries to set /users/<userId> to the specified data, but only
+    // if there's no data there already.
+    function tryCreateUser(userId, userData) {
+        var usersRef = new Firebase(USERS_LOCATION);
+        usersRef.child(userId).transaction(function (currentUserData) {
+            if (currentUserData === null)
+                return userData;
+        }, function (error, committed) {
+            userCreated(userId, committed);
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+    $scope.createAccount = function () {
       $scope.err = null;
-      if( assertValidAccountProps() ) {
+      if (assertValidAccountProps()) {
         var email = $scope.email;
         var pass = $scope.pass;
         // create user credentials in Firebase auth system
-        Auth.$createUser({email: email, password: pass})
-          .then(function() {
+        Auth.$createUser({ email: email, password: pass })
+          .then(function () {
             // authenticate so we have permission to write to Firebase
             return Auth.$authWithPassword({ email: email, password: pass });
           })
-          .then(function(user) {
+          .then(function (user) {
             // create a user profile in our data store
             var ref = fbutil.ref('users', user.uid);
-            return fbutil.handler(function(cb) {
-              ref.set({email: email, name: name||firstPartOfEmail(email)}, cb);
+            return fbutil.handler(function (cb) {
+              ref.set({ email: email, name: name || firstPartOfEmail(email) }, cb);
             });
           })
-          .then(function(/* user */) {
+          .then(function (/* user */) {
             // redirect to the account page
             $location.path('/account');
-          }, function(err) {
+          }, function (err) {
             $scope.err = errMessage(err);
           });
       }
     };
 
     function assertValidAccountProps() {
-      if( !$scope.email ) {
+      if (!$scope.email) {
         $scope.err = 'Please enter an email address';
       }
-      else if( !$scope.pass || !$scope.confirm ) {
+      else if (!$scope.pass || !$scope.confirm) {
         $scope.err = 'Please enter a password';
       }
-      else if( $scope.createMode && $scope.pass !== $scope.confirm ) {
+      else if ($scope.createMode && $scope.pass !== $scope.confirm) {
         $scope.err = 'Passwords do not match';
       }
       return !$scope.err;
     }
 
     function errMessage(err) {
-      return angular.isObject(err) && err.code? err.code : err + '';
+      return angular.isObject(err) && err.code ? err.code : err + '';
     }
 
     function firstPartOfEmail(email) {
-      return ucfirst(email.substr(0, email.indexOf('@'))||'');
+      return ucfirst(email.substr(0, email.indexOf('@')) || '');
     }
 
-    function ucfirst (str) {
+    function ucfirst(str) {
       // inspired by: http://kevin.vanzonneveld.net
       str += '';
       var f = str.charAt(0).toUpperCase();

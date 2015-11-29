@@ -7,7 +7,8 @@ angular.module('myApp', [
     'myApp.home',
     'myApp.account',
     'myApp.chat',
-    'myApp.login'
+    'myApp.login',
+    'ngMaterial'
   ])
   
   .config(['$routeProvider', function ($routeProvider) {
@@ -16,9 +17,16 @@ angular.module('myApp', [
     });
   }])
   
+  
+ 
+  
   .run(['$rootScope', 'Auth', function($rootScope, Auth) {
     // track status of authentication
     Auth.$onAuth(function(user) {
       $rootScope.loggedIn = !!user;
     });
+    
   }]);
+  
+  
+  

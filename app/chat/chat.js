@@ -20,8 +20,30 @@
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/chat', {
       templateUrl: 'chat/chat.html',
-      controller: 'ChatCtrl'
+      controller: 'ChatCtrl',
+      authRequired: true
+      
+      //resolve: {
+        //            factory: checkRouting
+      //}
     });
   }]);
+
+
+var checkRouting= function ($q, $rootScope, $location) {
+    if ($rootScope.userProfile) {
+        return true;
+    } else {
+        var deferred = $q.defer();
+        
+                deferred.reject();
+                $location.path("/login");
+             
+        return deferred.promise;
+   
+    }
+};
+
+
 
 })(angular);
