@@ -8,11 +8,11 @@
   <meta name="description" content="">
   <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="app/bower_app/components/angular-material/angular-material.css">
+  <link rel="stylesheet" href="app/bower_app/components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="app/bower_app/components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="app.css" />
-  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="app/bower_app/components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 
 
@@ -65,34 +65,34 @@
 
 
 
-  
+  <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.x/angular.min.js"></script>
 <script src="//cdn.firebase.com/js/client/2.2.x/firebase.js"></script>
 <script src="//cdn.firebase.com/libs/angularfire/1.0.x/angularfire.min.js"></script>
+-->
+  <script src="app/bower_app/components/angular/angular.js"></script>
+  <script src="app/bower_app/components/angular-route/angular-route.js"></script>
+  <script src="app/bower_app/components/firebase/firebase.js"></script>
+  <script src="app/bower_app/components/angularfire/dist/angularfire.js"></script>
+  <script src="app/bower_app/components/angular-aria/angular-aria.js"></script>
+  <script src="app/bower_app/components/angular-animate/angular-animate.js"></script>
+  <script src="app/bower_app/components/angular-material/angular-material.js"></script>
 
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/firebase/firebase.js"></script>
-  <script src="bower_components/angularfire/dist/angularfire.js"></script>
-  <script src="bower_components/angular-aria/angular-aria.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-material/angular-material.js"></script>
 
+  <script src="app/app.js"></script>
+  <script src="app/config.js"></script>
 
-  <script src="app.js"></script>
-  <script src="config.js"></script>
+  <script src="app/components/appversion/appversion-directive.js"></script>
+  <script src="app/components/auth/auth.js"></script>
+  <script src="app/components/firebase.utils/firebase.utils.js"></script>
+  <script src="app/components/ngcloak/ngcloak-decorator.js"></script>
+  <script src="app/components/reverse/reverse-filter.js"></script>
+  <script src="app/components/security/security.js"></script>
 
-  <script src="components/appversion/appversion-directive.js"></script>
-  <script src="components/auth/auth.js"></script>
-  <script src="components/firebase.utils/firebase.utils.js"></script>
-  <script src="components/ngcloak/ngcloak-decorator.js"></script>
-  <script src="components/reverse/reverse-filter.js"></script>
-  <script src="components/security/security.js"></script>
-
-  <script src="home/home.js"></script>
-  <script src="account/account.js"></script>
-  <script src="chat/chat.js"></script>
-  <script src="login/login.js"></script>
+  <script src="app/home/home.js"></script>
+  <script src="app/account/account.js"></script>
+  <script src="app/chat/chat.js"></script>
+  <script src="app/login/login.js"></script>
 </body>
 
 </html>
