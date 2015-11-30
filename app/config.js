@@ -18,16 +18,9 @@ angular.module('myApp.config', ['ngMaterial'])
     $mdDialog.hide(answer);
   };
 }])
+ 
   
-  
-  
-  .controller('MainNavigationCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav ) {
-  $scope.toggleSidenav = function (menuId, item) {
-    $mdSidenav(menuId).toggle();
-    $scope.selected = item;
-  };
 
-}])
   
   // version of this seed app is compatible with angularFire 1.0.0
   // see tags for other versions: https://github.com/firebase/angularFire-seed/tags
@@ -50,10 +43,21 @@ angular.module('myApp.config', ['ngMaterial'])
       
   }])
   
+  
+  
   .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('teal')
     .warnPalette('red')
     .accentPalette('orange');
-});
+})
 
+
+.controller('MainNavigationCtrl', ['$scope', '$mdSidenav',  function ($scope, $mdSidenav ) {
+  $scope.toggleSidenav = function (menuId, item) {
+    $mdSidenav(menuId).toggle();
+    $scope.selected = item;
+    console.log($scope.selected);
+  };
+
+}]);

@@ -24,38 +24,27 @@
           </md-input-container>
           <div layout layout-sm="column">
             <md-input-container flex>
-              <label>Actief</label>
+              <label>Reatief -> Actief</label>
               <input ng-model="measureForm.pointsToActive">
             </md-input-container>
             <md-input-container flex>
-              <label>pro</label>
+              <label>Actief -> pro actief</label>
               <input ng-model="measureForm.pointsToProActive" ng-minlength="1" ng-maxlength="1">
             </md-input-container>
             <md-input-container flex>
-              <label>33</label>
+              <label>Pro actief</label>
               <input ng-model="measureForm.pointsInProActive" ng-minlength="1" ng-maxlength="1">
             </md-input-container>
           </div>
 
         </form>
       </md-content>
-      <md-button ng-click="newStudent()">OK!</md-button>
     </md-dialog-content>
 
     <div class="md-actions" layout="row">
 
-      <md-button ng-click="cancel()">
-        Annuleren
-      </md-button>
+      <md-button class="md-warn" ng-click="cancel()">Annuleren</md-button>
       <md-button class="md-primary" ng-click="answer('saveMeasure')">Opslaan</md-button>
-
-
-      <md-button class="md-icon-button" ng-click="cancel()">
-        Annuleren
-      </md-button>
-      <md-button ng-disabled="false" ng-click="answer('saveMeasure')" style="margin-right:20px;">
-        Opslaan
-      </md-button>
 
     </div>
   </form>
