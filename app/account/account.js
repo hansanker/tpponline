@@ -69,7 +69,7 @@
     // this is handled by the .whenAuthenticated method declared in
     // components/router/router.js
     $routeProvider.whenAuthenticated('/account', {
-      templateUrl: 'account/account.html',
+      templateUrl: 'app/account/account.html',
       controller: 'AccountCtrl'
     })
   }]);
