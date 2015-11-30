@@ -11,7 +11,7 @@
 
   app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/home', {
-      templateUrl: 'home/home.html',
+      templateUrl: 'app/home/home.html',
       controller: 'HomeCtrl',
       resolve: {
         // forces the page to wait for this promise to resolve before controller is loaded
