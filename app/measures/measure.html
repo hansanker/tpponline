@@ -1,0 +1,35 @@
+<div layout="row" layout-sm="column" layout-margin layout-fill>
+	<div flex="3/4">
+		<md-button class="md-fab md-mini" aria-label="Add" ng-click="showAdvancedDialog($event, 'dialogNewMeasure')">
+			<i class="material-icons">add</i>
+		</md-button>
+		<div flex>
+			{{ username }}
+			<md-input-container>
+				<label>Zoek groep</label>
+				<input ng-model="groupFilter">
+			</md-input-container>
+		</div>
+	</div>
+</div>
+
+<md-list>
+  <md-list-item class="md-2-line" ng-repeat="measure in measures">
+    <md-checkbox ng-model="item.done"></md-checkbox>
+    <div class="md-list-item-text">
+      <h3>{{measure.title}}</h3>
+      <p>{{measure.description}}</p>
+    </div>
+  </md-list-item>
+</md-list>
+
+<md-button class="md-primary">Click me</md-button>
+<md-button class="md-primary md-hue-1">Click me</md-button>
+<md-button class="md-primary md-hue-2">Click me</md-button>
+<md-button class="md-primary md-hue-3">Click me</md-button>
+<md-button class="md-primary md-hue-4">Click me</md-button>
+
+
+<md-button class="md-primary">Click me</md-button>
+<md-button class="md-accent">or maybe me</md-button>
+<md-button class="md-warn">Careful</md-button>

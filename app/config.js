@@ -1,8 +1,24 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp.config', [])
+angular.module('myApp.config', ['ngMaterial'])
 
+  
+  
+//general controller for dialog forms
+.controller('DialogController', ['$scope', '$mdDialog', function DialogController($scope, $mdDialog) {
+
+  $scope.hide = function () {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function (answer) {
+    $mdDialog.hide(answer);
+  };
+}])
+  
   
   
   .controller('MainNavigationCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav ) {
@@ -31,5 +47,13 @@ angular.module('myApp.config', [])
         angular.element(document.body).removeClass('hide');
       }, 250);
     }
-  }]);
+      
+  }])
+  
+  .config(function ($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('teal')
+    .warnPalette('red')
+    .accentPalette('orange');
+});
 

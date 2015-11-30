@@ -4,7 +4,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
       controller: 'LoginCtrl',
-      templateUrl: 'login/login.html'
+      templateUrl: 'app/login/login.html'
     });
   }])
 
@@ -23,10 +23,6 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
           $scope.err = errMessage(err);
         });
     };
-
-
-
-
 
     $scope.createAccount = function () {
       $scope.err = null;
