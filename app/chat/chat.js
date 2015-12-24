@@ -21,11 +21,11 @@
     $routeProvider.when('/chat', {
       templateUrl: 'app/chat/chat.html',
       controller: 'ChatCtrl',
-      authRequired: true
-      
-      //resolve: {
-        //            factory: checkRouting
-      //}
+      authRequired: true,
+
+      resolve: {
+        factory: checkRouting
+      }
     });
   }]);
 
@@ -35,12 +35,12 @@ var checkRouting= function ($q, $rootScope, $location) {
         return true;
     } else {
         var deferred = $q.defer();
-        
+
                 deferred.reject();
                 $location.path("/login");
-             
+
         return deferred.promise;
-   
+
     }
 };
 
