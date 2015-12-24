@@ -19,9 +19,6 @@ angular.module('myApp', [
     });
   }])
   
-  
- 
-  
   .run(['$rootScope', 'Auth', function($rootScope, Auth) {
     // track status of authentication
     Auth.$onAuth(function(user) {
