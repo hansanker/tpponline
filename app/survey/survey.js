@@ -4,12 +4,8 @@
   var app = angular.module('myApp.survey', ['ngRoute', 'firebase.utils', 'firebase']);
 
   app.controller('SurveyCtrl', ['$scope', 'messageList', function($scope, messageList) {
-      $scope.messages = messageList;
-      $scope.addMessage = function(newMessage) {
-        if( newMessage ) {
-          $scope.messages.$add({text: newMessage});
-        }
-      };
+      
+
     }]);
 
   app.factory('messageList', ['fbutil', '$firebaseArray', function(fbutil, $firebaseArray) {
