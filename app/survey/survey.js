@@ -14,31 +14,11 @@
   }]);
 
   app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/survey', {
+    $routeProvider.whenAuthenticated('/survey', {
       templateUrl: 'app/survey/survey.html',
-      controller: 'SurveyCtrl',
-      authRequired: true,
-      resolve: {
-                   factory: checkRouting
-      }
+      controller: 'SurveyCtrl'
     });
   }]);
-
-
-var checkRouting= function ($q, $rootScope, $location) {
-    if ($rootScope.userProfile) {
-        return true;
-    } else {
-        var deferred = $q.defer();
-        
-                deferred.reject();
-                $location.path("/login");
-             
-        return deferred.promise;
-   
-    }
-};
-
 
 
 })(angular);

@@ -3,7 +3,7 @@
 
   // when $routeProvider.whenAuthenticated() is called, the path is stored in this list
   // to be used by authRequired() in the services below
-  var securedRoutes = ['/chat'];
+  var securedRoutes = [];
 
   angular.module('myApp.security', ['ngRoute', 'firebase.auth', 'myApp.config'])
 
