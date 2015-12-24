@@ -31,7 +31,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
         $scope.resetMyPass = function (myEmail) {
             var ref = fbutil.ref();
             ref.resetPassword({
-                email: "hans@humanc.nl"
+                email: myEmail
             }, function (error) {
                 if (error === null) {
                     console.log("Password reset email sent successfully");
