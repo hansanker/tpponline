@@ -10,6 +10,7 @@ angular.module('myApp', [
     'myApp.chat',
     'myApp.login',
     'myApp.measure',
+    'myApp.survey',
     'ngMaterial'
   ])
   
