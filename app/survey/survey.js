@@ -3,7 +3,7 @@
 
     var app = angular.module('myApp.survey', ['ngRoute', 'firebase.utils', 'firebase']);
 
-    app.controller('SurveyCtrl', ['$scope', '$routeParams', function ($scope, messageList, $routeParams) {
+    app.controller('SurveyCtrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
         var surveyHeaderID = $routeParams.surveyHeaderID;
 
         /* TODO 1: Check if user already has this survey in their profile */
@@ -13,12 +13,19 @@
         /* TODO 3: Fetch /SurveyHeader/<surveyHeaderID> and check its type (template.nameSurvey) */
 
         /* TODO 4: Redirect to corresponding Survey controller (TPP, etc) */
+
+        debugger;
     }]);
 
     app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.whenAuthenticated('/survey/:surveyHeaderID', {
             templateUrl: 'app/survey/survey.html',
-            controller: 'SurveyCtrl'
+            controller: 'SurveyCtrl',
+            resolve: {
+                user: ['Auth', function (Auth) {
+                    return Auth.$waitForAuth();
+                }]
+            }
         });
     }]);
 
