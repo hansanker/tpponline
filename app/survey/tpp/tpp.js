@@ -32,7 +32,7 @@
                     }
                 }
                 answersObject.$save();
-                //$scope.$apply();
+                
             });
             $scope.answers = answersObject;
         });
@@ -46,7 +46,7 @@
             }
         };
 
-        $scope.saveAnswer = function (questionID, answerID, value, event) {
+        $scope.saveAnswer = function (questionID, answerID, event) {
             if ($scope.getAnswerPoints(questionID) > 3) {
                 alert('Je kunt niet meer dan 3 punten aan een vraag toekennen');
                 event.preventDefault();

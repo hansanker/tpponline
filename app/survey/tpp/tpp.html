@@ -1,26 +1,33 @@
-<h2>TPP2</h2>
+<h2>TPP 2</h2>
 
 <div ng-repeat="(questionID, question) in survey.questions">
     <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
-        <div layout="row" layout-fill id="questionTitle">
+        <div layout="row"  id="questionTitle">
             <div flex="80">
                 <strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>
             </div>
-            <div flex="20" align="right">
+            <div flex="20" align="center">
+                oneens... eens
                 <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
                 <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
                 <md-button class="md-primary" ng-show="getAnswerPoints(questionID) == 3">Afronden</md-button>
             </div>
         </div>
-        <div layout="row" layout-fill ng-repeat="(answerID, answer) in question.answers">
+        <div layout="row"  ng-repeat="(answerID, answer) in question.answers">
             <div flex="80">
                 - {{answer.titleNL}}
             </div>
-            <div flex="20" align="right">
-                <span ng-repeat="index in [0, 1, 2, 3]">
+            <div flex="20" align="center">
+                <md-radio-group ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
+                    <md-radio-button value=0 ></md-radio-button>
+                    <md-radio-button value=1 class="md-primary"></md-radio-button>
+                    <md-radio-button value=2 class="md-primary">  </md-radio-button>
+                    <md-radio-button value=3 class="md-primary"></md-radio-button>
+                </md-radio-group>
+                <!--<span ng-repeat="index in [0, 1, 2, 3]">
                                 <input type="radio" ng-model="answers[questionID][answerID]" value="{{ index }}"
                                        name="{{ 'q' + questionID + 'a' + answerID }}}" ng-click="saveAnswer(questionID, answerID, index, $event)"> {{ index }}
-                </span>
+                </span>-->
             </div>
         </div>
     </md-whiteframe>

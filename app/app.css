@@ -77,3 +77,10 @@ fieldset {
   display: inline-block;
   line-height: 0;
 }
+
+
+md-radio-button, .md-switch-thumb {
+    
+    margin: 2px;
+
+}

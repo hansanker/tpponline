@@ -6,12 +6,14 @@
             <thead>
             <th>Kind</th>
             <th>Contact Person Customer</th>
+            <th>ID</th>
             </tr>
             </thead>
             <tbody>
             <tr style="cursor: pointer" ng-click="redirectToSurvey(survey.key)" ng-repeat="survey in mySurveys">
                 <td>{{survey.company}}</td>
                 <td>{{survey.team}}</td>
+                <td>{{survey.key}}</td>
 
             </tr>
             </tbody>
