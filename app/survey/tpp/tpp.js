@@ -37,7 +37,7 @@
             $scope.answers = answersObject;
         });
 
-        $scope.totalPoints = function (questionID) {
+        $scope.totalPoints = function () {
             var answers = $scope.answers;
             var totalPoints = 0;
 
@@ -55,7 +55,6 @@
 
             $scope.answers[questionID][answerID] = parseInt($scope.answers[questionID][answerID]);
             $scope.answers.$save();
-            //answersRef.child(questionID).child(answerID).set(value);
         };
 
         $scope.getAnswerPoints = function (questionID) {

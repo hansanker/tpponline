@@ -1,0 +1,27 @@
+<h2>Statistics</h2>
+
+<div >
+        <table>
+            <thead>
+            <th>Kind</th>
+            <th>Contact Person Customer</th>
+            <th>Team name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th># Inprogress</th>
+            <th># Complete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="cursor: pointer" ng-click="redirectToDetail(header.$id)" ng-repeat="header in headers">
+                <td>{{header.template.nameSurvey}}</td>
+                <td>{{header.emails}}</td>
+                <td>{{header.teamName}}</td>
+                <td>{{header.closeDate}}</td>
+                <td>{{header.openDate}}</td>
+                <td>{{header.inprogress || 0}}</td>
+                <td>{{header.complete || 0}}</td>
+            </tr>
+            </tbody>
+        </table>
+</div>

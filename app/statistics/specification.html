@@ -1,0 +1,21 @@
+<h2>Statistics Specification</h2>
+
+<div >
+    <h3>Tabel voorbeeld</h3>
+    <table>
+        <thead>
+        <th>Question ID</th>
+        <th>Question Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="entry in data">
+            <td>{{entry.questionID}}</td>
+            <td>{{entry.questionTitle}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>CSV voorbeeld</h3>
+    <div ng-repeat="entry in data">{{ entry.questionID + ', "' + entry.questionTitle + '", ' }}</div>
+</div>
