@@ -13,12 +13,7 @@
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.whenAuthenticated('/survey/tpp/:surveyHeaderID', {
             templateUrl: 'app/survey/tpp/tpp.html',
-            controller: 'TppSurveyCtrl',
-            resolve: {
-                user: ['Auth', function (Auth) {
-                    return Auth.$waitForAuth();
-                }]
-            }
+            controller: 'TppSurveyCtrl'
         });
     }]);
 
