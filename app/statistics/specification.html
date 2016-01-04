@@ -6,12 +6,14 @@
         <thead>
         <th>Question ID</th>
         <th>Question Title</th>
+        <th>email</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="entry in data">
             <td>{{entry.questionID}}</td>
             <td>{{entry.questionTitle}}</td>
+            <td>{{enty.dataEntry.userName}}</td>
         </tr>
         </tbody>
     </table>

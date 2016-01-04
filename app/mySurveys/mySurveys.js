@@ -3,27 +3,34 @@
 
     var app = angular.module('myApp.mySurveys', ['ngRoute', 'firebase.utils', 'firebase']);
 
-    app.controller('mySurveysCtrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
-        //var surveyHeaderID = $routeParams.surveyHeaderID;
+    app.controller('mySurveysCtrl', ['$scope', '$routeParams', 'user', 'fbutil', '$location', function ($scope, $routeParams, user, fbutil, $location) {
 
-        /* TODO 1: Check if user already has this survey in their profile */
 
-        /* TODO 2: If user does not yet have survey in their profile, add it */
 
-        /* TODO 3: Fetch /SurveyHeaders/<surveyHeaderID> and check its type (template.nameSurvey) */
+$scope.redirectToSurvey = function (surveyID) {
+            $location.path('/survey/' + surveyID);
+        }
 
-        /* TODO 4: Redirect to corresponding Survey controller (TPP, etc) */
 
-      
+        var ref = fbutil.ref();
+        $scope.mySurveys = [];
+
+        ref.child("/users/" + user.uid + "/surveys").on('child_added', function (snapshot) {
+            var headerKey = snapshot.key();
+
+            ref.child("/SurveyHeaders/" + headerKey).once('value', function (snapshot) {
+                var company = snapshot.child('company').val();
+                var team = snapshot.child('teamName').val();
+                $scope.mySurveys.push({ 'company': company, 'team': team, 'key' :  headerKey});
+                $scope.$apply();
+            });
+        });
     }]);
 
-   
-  
-  app.config(['$routeProvider', function ($routeProvider) {
-        
-              
-            $routeProvider.when('/mySurveys', {
-            
+    app.config(['$routeProvider', function ($routeProvider) {
+
+        $routeProvider.when('/mySurveys', {
+
             templateUrl: 'app/mySurveys/mySurveys.html',
             controller: 'mySurveysCtrl',
             resolve: {
@@ -33,6 +40,5 @@
             }
         });
     }]);
-
 
 })(angular);

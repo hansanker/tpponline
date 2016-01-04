@@ -1,1 +1,19 @@
-test
+<h2>Mijn vragenlijsten</h2>
+
+
+<div >
+        <table>
+            <thead>
+            <th>Kind</th>
+            <th>Contact Person Customer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="cursor: pointer" ng-click="redirectToSurvey(survey.key)" ng-repeat="survey in mySurveys">
+                <td>{{survey.company}}</td>
+                <td>{{survey.team}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+</div>
