@@ -1,38 +1,33 @@
 <h2>TPP2</h2>
-<div>
-    <ul ng-repeat="(questionID, question) in survey.questions">
-        <li>
-            <div class="row" id="questionTitle">
-                <div class="col-md-8">
-                    <strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>
-                </div>
-                <div class="col-md-2" align="right">
-                    <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
-                    <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
-                    <md-button class="md-primary" ng-show="getAnswerPoints(questionID) == 3">Afronden</md-button>
-                </div>
+
+<div ng-repeat="(questionID, question) in survey.questions">
+    <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
+        <div layout="row" layout-fill id="questionTitle">
+            <div flex="80">
+                <strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>
             </div>
-        </li>
-        <li>
-            <ul ng-repeat="(answerID, answer) in question.answers">
-                <li>
-                    <div class="row" id="">
-                        <div class="col-md-8">
-                            - {{answer.titleNL}}  
-                        </div>
-                        <div class="col-md-2">
-                            <span ng-repeat="index in [0, 1, 2, 3]">
+            <div flex="20" align="right">
+                <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
+                <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
+                <md-button class="md-primary" ng-show="getAnswerPoints(questionID) == 3">Afronden</md-button>
+            </div>
+        </div>
+        <div layout="row" layout-fill ng-repeat="(answerID, answer) in question.answers">
+            <div flex="80">
+                - {{answer.titleNL}}
+            </div>
+            <div flex="20" align="right">
+                <span ng-repeat="index in [0, 1, 2, 3]">
                                 <input type="radio" ng-model="answers[questionID][answerID]" value="{{ index }}"
                                        name="{{ 'q' + questionID + 'a' + answerID }}}" ng-click="saveAnswer(questionID, answerID, index, $event)"> {{ index }}
-                            </span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <div ng-show="errorID === questionID">
-            <p style="color: red">Geef maximaal 3 punten per vraag.</p>
+                </span>
+            </div>
         </div>
-    </ul>
-    <md-button class="md-primary" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()" >Afronden</md-button>
+    </md-whiteframe>
+
+
+    <div ng-show="errorID === questionID">
+        <p style="color: red">Geef maximaal 3 punten per vraag.</p>
+    </div>
 </div>
+<md-button class="md-primary" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
