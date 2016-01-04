@@ -1,4 +1,4 @@
-<h2>TPP 2</h2>
+<h2>TPP</h2>
 
 <div ng-repeat="(questionID, question) in survey.questions">
     <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
@@ -7,10 +7,9 @@
                 <strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>
             </div>
             <div flex="20" align="center">
-                oneens... eens
                 <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
                 <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
-                <md-button class="md-primary" ng-show="getAnswerPoints(questionID) == 3">Afronden</md-button>
+                <md-button class="md-primary" ng-show="getAnswerPoints(questionID) == 3">Compleet</md-button>
             </div>
         </div>
         <div layout="row"  ng-repeat="(answerID, answer) in question.answers">
@@ -18,7 +17,7 @@
                 - {{answer.titleNL}}
             </div>
             <div flex="20" align="center">
-                <md-radio-group ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
+                <md-radio-group ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
                     <md-radio-button value=0 ></md-radio-button>
                     <md-radio-button value=1 class="md-primary"></md-radio-button>
                     <md-radio-button value=2 class="md-primary">  </md-radio-button>
