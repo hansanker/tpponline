@@ -1,1 +1,37 @@
 <h2>TPP</h2>
+<div>
+    <ul ng-repeat="(questionID, question) in survey.questions">
+        <li>
+            <div class="row" id="questionTitle">
+                <div class="col-md-8">
+                    <strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>
+                </div>
+                <div class="col-md-2" align="right">
+                    <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
+                    <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
+                </div>
+            </div>
+        </li>
+        <li>
+            <ul ng-repeat="(answerID, answer) in question.answers">
+                <li>
+                    <div class="row" id="">
+                        <div class="col-md-8">
+                            - {{answer.titleNL}}
+                        </div>
+                        <div class="col-md-2">
+                            <span ng-repeat="index in [0, 1, 2, 3]">
+                                <input type="radio" ng-model="answers[questionID][answerID]" value="{{ index }}"
+                                       name="{{ 'q' + questionID + 'a' + answerID }}}" ng-click="saveAnswer(questionID, answerID, index, $event)"> {{ index }}
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <div ng-show="errorID === questionID">
+            <p style="color: red">Geef maximaal 3 punten per vraag.</p>
+        </div>
+    </ul>
+    <md-button class="md-primary" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()" >Afronden</md-button>
+</div>

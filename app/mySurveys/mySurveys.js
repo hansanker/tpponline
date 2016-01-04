@@ -10,7 +10,7 @@
 
         /* TODO 2: If user does not yet have survey in their profile, add it */
 
-        /* TODO 3: Fetch /SurveyHeader/<surveyHeaderID> and check its type (template.nameSurvey) */
+        /* TODO 3: Fetch /SurveyHeaders/<surveyHeaderID> and check its type (template.nameSurvey) */
 
         /* TODO 4: Redirect to corresponding Survey controller (TPP, etc) */
 
