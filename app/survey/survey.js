@@ -20,7 +20,7 @@
         });
         
         /* TODO 3: Fetch /SurveyHeader/<surveyHeaderID> and check its type (template.nameSurvey) */
-        ref.child("SurveyHeader/" + surveyHeaderID + "/template/nameSurvey").once("value", function (data) {
+        ref.child("SurveyHeaders/" + surveyHeaderID + "/template/nameSurvey").once("value", function (data) {
             console.log(data.val());
             var surveyType = data.val().toLowerCase();
 
