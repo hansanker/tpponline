@@ -32,7 +32,11 @@
   }]);
   
 
-  app.config(['$routeProvider', function ($routeProvider) {
+ app.config(['$routeProvider', function ($routeProvider) {
+    
+
+  
+    
     $routeProvider.when('/measure', {
       templateUrl: 'app/measures/measure.html',
       controller: 'MeasureCtrl',

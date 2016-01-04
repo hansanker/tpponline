@@ -1,7 +1,7 @@
 (function (angular) {
     "use strict";
 
-    var app = angular.module('myApp.survey', ['ngRoute', 'firebase.utils', 'firebase']);
+    var app = angular.module('myApp.TPPsurvey', ['ngRoute', 'firebase.utils', 'firebase']);
 
     app.controller('TppSurveyCtrl', ['$scope', 'user', '$routeParams', function($scope, user, $routeParams) {
         var surveyHeaderID = $routeParams.surveyHeaderID;

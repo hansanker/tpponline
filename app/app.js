@@ -9,8 +9,9 @@ angular.module('myApp', [
     'myApp.account',
     'myApp.chat',
     'myApp.login',
-    'myApp.measure',
     'myApp.survey',
+    'myApp.mySurveys',
+    'myApp.measure',
     'ngMaterial'
   ])
   

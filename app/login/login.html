@@ -14,8 +14,11 @@
         <span>confirm pass</span>
         <input type="password" ng-model="confirm" />
     </label>
-    <button ng-click="login(email, pass)" ng-hide="createMode">Log In</button>
-    <button ng-click="createMode = true" ng-hide="createMode">Register</button>
+  
+    <md-button class="md-primary" ng-click="login(email, pass)" ng-hide="createMode">Inloggen</md-button>
+    <md-button class="md-primary" ng-click="createMode = true" ng-hide="createMode">Registreren</md-button>
+    
+    
     <button ng-click="resetMyPass(email)" ng-hide="createMode">Reset pass</button>
     <button ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
     <button ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
@@ -23,3 +26,23 @@
     <p ng-show="err" class="error">{{err}}</p>
 </form>
 
+
+
+<form>
+  <div class="group">
+    <input type="text"><span class="highlight"></span><span class="bar"></span>
+    <label>Name</label>
+  </div>
+  <div class="group">
+    <input type="email"><span class="highlight"></span><span class="bar"></span>
+    <label>Email</label>
+  </div>
+  <button type="button" class="button buttonBlue">Subscribe
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+  
+  <md-input-container flex>
+            <label>Titel maatregel</label>
+            <input ng-model="measureForm.title">
+          </md-input-container>
+</form>
