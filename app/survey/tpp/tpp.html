@@ -1,4 +1,4 @@
-<h2>TPP</h2>
+<h2>TPP2</h2>
 <div>
     <ul ng-repeat="(questionID, question) in survey.questions">
         <li>
@@ -9,6 +9,7 @@
                 <div class="col-md-2" align="right">
                     <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
                     <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
+                    <md-button class="md-primary" ng-show="totalPoints(questionID) == 3">Afronden</md-button>
                 </div>
             </div>
         </li>
@@ -17,7 +18,7 @@
                 <li>
                     <div class="row" id="">
                         <div class="col-md-8">
-                            - {{answer.titleNL}}
+                            - {{answer.titleNL}}  
                         </div>
                         <div class="col-md-2">
                             <span ng-repeat="index in [0, 1, 2, 3]">
