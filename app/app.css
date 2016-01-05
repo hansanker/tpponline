@@ -84,3 +84,10 @@ md-radio-button, .md-switch-thumb {
     margin: 2px;
 
 }
+
+.even{
+    background-color: whitesmoke;
+}
+.odd{
+    background-color: white;
+}

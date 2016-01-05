@@ -3,24 +3,24 @@
 <div ng-repeat="(questionID, question) in survey.questions">
     <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
         <div layout="row"  id="questionTitle">
-            <div flex="80">
-                <strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>
+            <div flex="80" class="md-headline" style="margin-bottom: 16px;">
+                <!--<strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>-->
+                {{questionID + 1}}  -  {{ question.titleNL }}
             </div>
-            <div flex="20" align="center">
+            <div flex="20" align="left">
                 <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
                 <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
-                <md-button class="md-primary" ng-show="getAnswerPoints(questionID) == 3">Compleet</md-button>
+                <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="left"> check </md-icon>
             </div>
         </div>
-        <div layout="row"  ng-repeat="(answerID, answer) in question.answers">
-            <div flex="80">
-                - {{answer.titleNL}}
+        <div layout="row"  ng-repeat="(answerID, answer) in question.answers" ng-class="{even: $even, odd: $odd}">
+            <div  flex="80">{{answer.titleNL}}
             </div>
             <div flex="20" align="center">
                 <md-radio-group ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
                     <md-radio-button value=0 ></md-radio-button>
                     <md-radio-button value=1 class="md-primary"></md-radio-button>
-                    <md-radio-button value=2 class="md-primary">  </md-radio-button>
+                    <md-radio-button value=2 class="md-primary"></md-radio-button>
                     <md-radio-button value=3 class="md-primary"></md-radio-button>
                 </md-radio-group>
                 <!--<span ng-repeat="index in [0, 1, 2, 3]">
