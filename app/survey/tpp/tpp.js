@@ -17,6 +17,7 @@
             $scope.survey = surveyHeader.template;
 
             var answersObject = $firebaseObject(answersRef);
+            
             answersObject.$watch(function () {console.log('watcher triggered')});
             answersObject.$loaded(function () {
                 var questions = $scope.survey.questions;

@@ -4,23 +4,12 @@
     <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
         <div layout="row" id="questionTitle">
             <div flex="90" class="md-headline" style="margin-bottom: 16px;">
-                <!--<strong>{{questionID + 1}}. <span>{{ question.titleNL }}</span></strong>-->
-                {{questionID + 1}} - {{ question.titleNL }}
+               <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
+                <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
+ {{questionID + 1}} - {{ question.titleNL }}
             </div>
             <div flex="10" align="right">
-                <i ng-show="totalPoints(questionID) === 3" class="fa fa-check-square-o fa-2x"></i>
-                <i ng-show="totalPoints(questionID) !== 3" class="fa fa-square-o fa-2x"></i>
-                <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
-                <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
-
-
-            </div>
-        </div>
-        <div layout="row">
-            <div flex="90">
-            </div>
-            <div flex="10">
-                <div layout="row">
+               <div layout="row">
                     <span flex="25" align="center">0</span>
                     <span flex="25" align="center">1</span>
                     <span flex="25" align="center">2</span>
@@ -28,23 +17,25 @@
                 </div>
             </div>
         </div>
+        
 
         <div layout="row" ng-repeat="(answerID, answer) in question.answers" ng-class="{even: $even, odd: $odd}">
-            <div flex="90">{{answer.titleNL}}
+            <div flex="90">
+                {{answer.titleNL}}
             </div>
             <div flex="10">
-            
-            <md-radio-group  align="right" ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
-                <md-radio-button flex="22" value=0></md-radio-button>
-                <md-radio-button flex="22" value=1 class="md-primary"></md-radio-button>
-                <md-radio-button flex="22" value=2 class="md-primary"></md-radio-button>
-                <md-radio-button flex="22" value=3 class="md-primary"></md-radio-button>
-            </md-radio-group>
-            <!--<span ng-repeat="index in [0, 1, 2, 3]">
+
+                <md-radio-group align="right" ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
+                    <md-radio-button flex="22" value=0></md-radio-button>
+                    <md-radio-button flex="22" value=1 class="md-primary"></md-radio-button>
+                    <md-radio-button flex="22" value=2 class="md-primary"></md-radio-button>
+                    <md-radio-button flex="22" value=3 class="md-primary"></md-radio-button>
+                </md-radio-group>
+                <!--<span ng-repeat="index in [0, 1, 2, 3]">
                                 <input type="radio" ng-model="answers[questionID][answerID]" value="{{ index }}"
                                        name="{{ 'q' + questionID + 'a' + answerID }}}" ng-click="saveAnswer(questionID, answerID, index, $event)"> {{ index }}
                 </span>-->
-</div>
+            </div>
         </div>
     </md-whiteframe>
 

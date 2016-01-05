@@ -19,10 +19,12 @@
         var users = $firebaseObject(fbutil.ref().child('users'));
 
         header.$loaded(function(){
+           
             reactionsList.$loaded(function(){
+                 var data = {};
                 users.$loaded(function(){
                     var questions = header.template.questions;
-                    var data = {};
+                    
                     for(var questionID in questions){
                         var question = questions[questionID];
                         for(var answerID in question.answers){
@@ -45,6 +47,8 @@
                                 dataEntry.answerResult = answer;
                                 dataEntry.userID = reaction.$id;
                                 dataEntry.userName = users[reaction.$id].name;
+                                dataEntry.userMail = users[reaction.$id].email;
+                                console.log(dataEntry.userMail)
                             });
                         });
                     });
