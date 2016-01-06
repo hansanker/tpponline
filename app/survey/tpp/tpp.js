@@ -6,16 +6,20 @@
     app.controller('TppSurveyCtrl', ['$scope', 'user', '$routeParams', '$firebaseObject', 'fbutil', function ($scope, user, $routeParams, $firebaseObject, fbutil) {
         var surveyHeaderID = $routeParams.surveyHeaderID;
         var surveyHeaderRef = fbutil.ref().child('SurveyHeaders').child(surveyHeaderID);
-
-
         var answersRef = fbutil.ref().child('SurveyReactions').child(surveyHeaderID).child(user.uid);
+        var userReactionDetailsRef = fbutil.ref().child('users').child(user.uid).child('surveys').child(surveyHeaderID);
+        
+        $scope.userReactionDetailsRefObject = $firebaseObject(userReactionDetailsRef).$bindTo($scope, "bindedUserReactionDeatils");
 
         $scope.userAnswers = {};
 
         surveyHeaderRef.once('value', function (surveySnapshot) {
             var surveyHeader = surveySnapshot.val();
             $scope.surveyHeader = surveyHeader;
+            
+
             $scope.survey = surveyHeader.template;
+            $scope.teams = surveyHeader.teams;
 
             var answersObject = $firebaseObject(answersRef);
             
