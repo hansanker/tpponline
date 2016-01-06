@@ -7,6 +7,7 @@
         var surveyHeaderID = $routeParams.surveyHeaderID;
         var surveyHeaderRef = fbutil.ref().child('SurveyHeaders').child(surveyHeaderID);
 
+
         var answersRef = fbutil.ref().child('SurveyReactions').child(surveyHeaderID).child(user.uid);
 
         $scope.userAnswers = {};
