@@ -3,23 +3,23 @@
 
     <md-input-container>
         <label>Email</label>
-        <input ng-model="email" ng-pattern="/^.+@.+\..+$/">
+        <input  type="email" ng-model="email" ng-change="checkEmail(email)">
     </md-input-container>
 
     <md-input-container>
         <label>Wachtwoord</label>
-        <input ng-model="pass">
+        <input type="password" ng-model="pass">
     </md-input-container>
 
     <md-input-container>
         <label>Bevestigen wachtwoord</label>
-        <input ng-model="confirm">
+        <input type="password" ng-model="confirm">
     </md-input-container>
 
-    <md-button class="md-primary" ng-click="login(email, pass)" ng-hide="createMode">Inloggen</md-button>
-    <md-button class="md-primary" ng-click="createAccount()" ng-hide="createMode">Registreren</md-button>
-    <md-button class="md-primary" ng-click="resetMyPass(email)" ng-hide="createMode">Reset wachtwoord</md-button>
-
+    <md-button class="md-primary" ng-click="login(email, pass)" ng-show="knownEmail">Inloggen</md-button>
+    <md-button class="md-primary" ng-click="createAccount()" ng-hide="knownEmail">Registreren</md-button>
+    <md-button class="md-primary" ng-click="resetMyPass(email)" ng-show="knownEmail">Reset wachtwoord</md-button>
+<p ng-show="err" class="error">{{err}}</p>
 </md-whiteframe>
 
 

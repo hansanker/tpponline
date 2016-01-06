@@ -25,6 +25,23 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
         };
 
 
+        //check email       
+        $scope.checkEmail = function (email) {
+            $scope.knownEmail = false;
+            var users = fbutil.ref().child('users')
+            users.once("value", function (allUserMessagesSnapshot) {
+                allUserMessagesSnapshot.forEach(function (userSnapshot) { 
+                    var userEmail = userSnapshot.child("email").val();  // e.g. "barney"
+                    if (userEmail === email) {
+                         $scope.knownEmail = true;
+                    }        
+                   
+                });
+            });
+
+        };
+
+
 
         //change pass
 

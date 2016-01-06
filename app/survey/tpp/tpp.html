@@ -4,13 +4,13 @@
     </div>
 </md-toolbar>
 
-<md-content ng-show="survey.questions" flex layout-padding>
+<md-content ng-show="survey.questions" layout-padding>
     <p>{{ surveyHeader.extraInformation }}</p>
     <p>{{ survey.instruction}}</p>
 
     <div>
-        <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
-            <md-input-container style="width: 300px;">
+        <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding flex-sm="45" flex-gt-sm="35" flex-gt-md="25">
+            <md-input-container >
                 <label>Kies uw team</label>
                 <md-select ng-model="bindedUserReactionDeatils.team">
                     <md-option ng-repeat="team in teams" value="{{team.teamName}}">
@@ -24,7 +24,7 @@
 
 <div ng-repeat="(questionID, question) in survey.questions">
     <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
-        <div layout="row" id="questionTitle">
+        <div layout="row" id="questionTitle" layout-padding>
             <div flex="90" class="md-headline" style="margin-bottom: 16px;">
                 <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
                 <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div layout="row" ng-repeat="(answerID, answer) in question.answers" ng-class="{even: $even, odd: $odd}">
+        <div layout="row" ng-repeat="(answerID, answer) in question.answers" ng-class="{even: $even, odd: $odd}" layout-padding>
             <div flex="90">
                 {{answer.titleNL}}
             </div>
