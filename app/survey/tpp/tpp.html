@@ -1,5 +1,12 @@
-<h2>TPP</h2>
-
+ <md-toolbar class="md-primary md-hue-1" >
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">TPP vragenlijst {{ surveyHeader.company}}</h2>
+    </div>
+  </md-toolbar>
+  <md-content ng-show="survey.questions" flex layout-padding >
+      <p>{{ surveyHeader.extraInformation }}</p>
+      <p>{{ survey.instruction}}</p>
+ </md-content>
 <div ng-repeat="(questionID, question) in survey.questions">
     <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
         <div layout="row" id="questionTitle">
@@ -25,11 +32,11 @@
             </div>
             <div flex="10">
 
-                <md-radio-group align="right" ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
-                    <md-radio-button flex="22" value=0></md-radio-button>
-                    <md-radio-button flex="22" value=1 class="md-primary"></md-radio-button>
-                    <md-radio-button flex="22" value=2 class="md-primary"></md-radio-button>
-                    <md-radio-button flex="22" value=3 class="md-primary"></md-radio-button>
+                <md-radio-group aria-label="text" align="right" ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
+                    <md-radio-button flex="22" value=0 aria-label="text"></md-radio-button>
+                    <md-radio-button flex="22" value=1 class="md-primary" aria-label="text"></md-radio-button>
+                    <md-radio-button flex="22" value=2 class="md-primary" aria-label="text"></md-radio-button>
+                    <md-radio-button flex="22" value=3 class="md-primary" aria-label="text"></md-radio-button>
                 </md-radio-group>
                 <!--<span ng-repeat="index in [0, 1, 2, 3]">
                                 <input type="radio" ng-model="answers[questionID][answerID]" value="{{ index }}"
@@ -44,4 +51,5 @@
         <p style="color: red">Geef maximaal 3 punten per vraag.</p>
     </div>
 </div>
-<md-button class="md-primary" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
+<md-button align="center" class="md-primary" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
+<div align="center" ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer ale vragen volledig zijn beantwoord zal de knop 'Afronden' beschikbaar komen</div>
