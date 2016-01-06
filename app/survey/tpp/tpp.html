@@ -30,12 +30,12 @@
                 <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
                 {{questionID + 1}} - {{ question.titleNL }}
             </div>
-            <div flex="10" align="right">
-                <div layout="row">
-                    <span flex="25" align="center">0</span>
-                    <span flex="25" align="center">1</span>
-                    <span flex="25" align="center">2</span>
-                    <span flex="25" align="center">3</span>
+            <div flex="10" >
+                <div layout="row" layout-align="space-around end">
+                    <span flex="20" >0</span>
+                    <span flex="20" >1</span>
+                    <span flex="20" >2</span>
+                    <span flex="20" >3</span>
                 </div>
             </div>
         </div>
@@ -45,11 +45,11 @@
                 {{answer.titleNL}}
             </div>
             <div flex="10">
-                <md-radio-group aria-label="text" align="right" ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
-                    <md-radio-button flex="22" value=0 aria-label="text"></md-radio-button>
-                    <md-radio-button flex="22" value=1 class="md-primary" aria-label="text"></md-radio-button>
-                    <md-radio-button flex="22" value=2 class="md-primary" aria-label="text"></md-radio-button>
-                    <md-radio-button flex="22" value=3 class="md-primary" aria-label="text"></md-radio-button>
+                <md-radio-group layout-align="space-around end" aria-label="text"  ng-checked="0" ng-model="answers[questionID][answerID]" layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
+                    <md-radio-button flex="20" value=0 aria-label="text"></md-radio-button>
+                    <md-radio-button flex="20" value=1 class="md-primary" aria-label="text"></md-radio-button>
+                    <md-radio-button flex="20" value=2 class="md-primary" aria-label="text"></md-radio-button>
+                    <md-radio-button flex="20" value=3 class="md-primary" aria-label="text"></md-radio-button>
                 </md-radio-group>
                 <!--<span ng-repeat="index in [0, 1, 2, 3]">
                                 <input type="radio" ng-model="answers[questionID][answerID]" value="{{ index }}"

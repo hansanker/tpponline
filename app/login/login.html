@@ -1,25 +1,30 @@
 
-<h2>Login Page</h2>
+<md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="column" layout-padding>
 
-<form>
-    <label>
-        <span>email</span>
-        <input type="text" ng-model="email" />
-    </label>
-    <label>
-        <span>password</span>
-        <input type="password" ng-model="pass" />
-    </label>
-    <label ng-cloak ng-show="createMode">
-        <span>confirm pass</span>
-        <input type="password" ng-model="confirm" />
-    </label>
-  
+    <md-input-container>
+        <label>Email</label>
+        <input ng-model="email" ng-pattern="/^.+@.+\..+$/">
+    </md-input-container>
+
+    <md-input-container>
+        <label>Wachtwoord</label>
+        <input ng-model="pass">
+    </md-input-container>
+
+    <md-input-container>
+        <label>Bevestigen wachtwoord</label>
+        <input ng-model="confirm">
+    </md-input-container>
+
     <md-button class="md-primary" ng-click="login(email, pass)" ng-hide="createMode">Inloggen</md-button>
-    <md-button class="md-primary" ng-click="createMode = true" ng-hide="createMode">Registreren</md-button>
-    
-    
-    <button ng-click="resetMyPass(email)" ng-hide="createMode">Reset pass</button>
+    <md-button class="md-primary" ng-click="createAccount()" ng-hide="createMode">Registreren</md-button>
+    <md-button class="md-primary" ng-click="resetMyPass(email)" ng-hide="createMode">Reset wachtwoord</md-button>
+
+</md-whiteframe>
+
+
+
+<!--<button ng-click="resetMyPass(email)" ng-hide="createMode">Reset pass</button>
     <button ng-cloak ng-show="createMode" ng-click="createAccount()">Create Account</button>
     <button ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
 
@@ -45,4 +50,4 @@
             <label>Titel maatregel</label>
             <input ng-model="measureForm.title">
           </md-input-container>
-</form>
+</form>-->
