@@ -6,8 +6,7 @@
     app.controller('mySurveysCtrl', ['$scope', '$routeParams', 'user', 'fbutil', '$location', function ($scope, $routeParams, user, fbutil, $location) {
 
 
-
-$scope.redirectToSurvey = function (surveyID) {
+        $scope.redirectToSurvey = function (surveyID) {
             $location.path('/survey/' + surveyID);
         }
 
@@ -17,11 +16,13 @@ $scope.redirectToSurvey = function (surveyID) {
 
         ref.child("/users/" + user.uid + "/surveys").on('child_added', function (snapshot) {
             var headerKey = snapshot.key();
+            var team = snapshot.child('team').val();
+            var startSurvey = snapshot.child('start').val();
 
             ref.child("/SurveyHeaders/" + headerKey).once('value', function (snapshot) {
                 var company = snapshot.child('company').val();
-                var team = snapshot.child('teamName').val();
-                $scope.mySurveys.push({ 'company': company, 'team': team, 'key' :  headerKey});
+
+                $scope.mySurveys.push({ 'company': company, 'team': team, 'key': headerKey });
                 $scope.$apply();
             });
         });

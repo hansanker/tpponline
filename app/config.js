@@ -47,9 +47,9 @@ angular.module('myApp.config', ['ngMaterial'])
   
   .config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('default')
-    .primaryPalette('teal')
+    .primaryPalette('blue')
     .warnPalette('red')
-    .accentPalette('orange');
+    .accentPalette('red');
 })
 
 

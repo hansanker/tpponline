@@ -8,7 +8,7 @@
         var surveyHeaderRef = fbutil.ref().child('SurveyHeaders').child(surveyHeaderID);
         var answersRef = fbutil.ref().child('SurveyReactions').child(surveyHeaderID).child(user.uid);
         var userReactionDetailsRef = fbutil.ref().child('users').child(user.uid).child('surveys').child(surveyHeaderID);
-        
+
         $scope.userReactionDetailsRefObject = $firebaseObject(userReactionDetailsRef).$bindTo($scope, "bindedUserReactionDeatils");
 
         $scope.userAnswers = {};
@@ -16,14 +16,12 @@
         surveyHeaderRef.once('value', function (surveySnapshot) {
             var surveyHeader = surveySnapshot.val();
             $scope.surveyHeader = surveyHeader;
-            
-
             $scope.survey = surveyHeader.template;
             $scope.teams = surveyHeader.teams;
 
             var answersObject = $firebaseObject(answersRef);
-            
-            answersObject.$watch(function () {console.log('watcher triggered')});
+
+            answersObject.$watch(function () { console.log('watcher triggered') });
             answersObject.$loaded(function () {
                 var questions = $scope.survey.questions;
                 for (var questionID in questions) {
@@ -38,7 +36,6 @@
                     }
                 }
                 answersObject.$save();
-                
             });
             $scope.answers = answersObject;
         });
@@ -52,14 +49,17 @@
             }
         };
 
-        $scope.saveAnswer = function (questionID, answerID, event) {
+        $scope.saveAnswer = function (questionID, answerID, event, points) {
             if ($scope.getAnswerPoints(questionID) > 3) {
-                alert('Je kunt niet meer dan 3 punten aan een vraag toekennen');
+                // alert('Je kunt niet meer dan 3 punten aan een vraag toekennen');
                 event.preventDefault();
                 return false;
             }
 
             $scope.answers[questionID][answerID] = parseInt($scope.answers[questionID][answerID]);
+            // $scope.answers[questionID][answerID] = parseInt($scope.answers[questionID][answerID]);
+            console.log(parseInt($scope.answers[questionID][answerID]));
+            console.log(points)
             $scope.answers.$save();
         };
 

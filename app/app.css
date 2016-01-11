@@ -92,3 +92,7 @@ md-radio-button, .md-switch-thumb {
     background-color: white;
 }
 
+
+.md-buttonBtn1 {  min-width: 30px; min-height: 24px; line-height: 24px ; padding: 0 6 0 6;margin:  0 6px 0 0}
+
+

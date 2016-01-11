@@ -1,20 +1,16 @@
-
-
-<div >
-        <table>
-            <thead>
-            <th>Kind</th>
-            <th>Contact Person Customer</th>
-            <th>ID</th>
+<div>
+    <table>
+        <thead>
+            <th align='left'>Organisatie</th>
+            <th>Team</th>
+            <th>Start invullen</th>
+        </thead>
+        <tbody layout-margin>
+            <tr style="cursor: pointer" ng-click="redirectToSurvey(survey.key)" ng-repeat="survey in mySurveys" ng-class="{even: $even, odd: $odd}">
+                <td layout-padding>{{survey.company}}</td>
+                <td layout-padding>{{survey.team}}</td>
+                <td layout-padding>{{startSurvey}}</td>
             </tr>
-            </thead>
-            <tbody>
-            <tr style="cursor: pointer" ng-click="redirectToSurvey(survey.key)" ng-repeat="survey in mySurveys">
-                <td>{{survey.company}}</td>
-                <td>{{survey.team}}</td>
-                <td>{{survey.key}}</td>
-
-            </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </div>
