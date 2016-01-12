@@ -50,16 +50,14 @@
         };
 
         $scope.saveAnswer = function (questionID, answerID, event, points) {
-            if ($scope.getAnswerPoints(questionID) > 3) {
-                // alert('Je kunt niet meer dan 3 punten aan een vraag toekennen');
-                event.preventDefault();
-                return false;
+
+            if ($scope.answers[questionID][answerID] == points) {
+                $scope.answers[questionID][answerID] = 0;
+
+            } else {
+                $scope.answers[questionID][answerID] = points;
             }
 
-            $scope.answers[questionID][answerID] = parseInt($scope.answers[questionID][answerID]);
-            // $scope.answers[questionID][answerID] = parseInt($scope.answers[questionID][answerID]);
-            console.log(parseInt($scope.answers[questionID][answerID]));
-            console.log(points)
             $scope.answers.$save();
         };
 

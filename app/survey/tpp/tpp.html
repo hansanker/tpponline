@@ -27,67 +27,46 @@
 <div ng-repeat="(questionID, question) in survey.questions">
     <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
         <div layout="row" id="questionTitle" layout-padding>
-            <div flex="90" class="md-headline" style="margin-bottom: 16px;">
+            <div flex="80" class="md-headline" style="margin-bottom: 16px;">
                 {{questionID + 1}} - {{ question.titleNL }}
-                <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
-                <md-icon md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
+
 
             </div>
-            <div flex="10">
-                <!--<div layout="row" layout-align="space-around end">
-                    <span flex="20">0</span>
-                    <span flex="20">1</span>
-                    <span flex="20">2</span>
-                    <span flex="20">3</span>
-                </div>-->
+            <div flex="20" align="right">
+
+                <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
+                <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
+
             </div>
         </div>
         <div layout="row" ng-repeat="(answerID, answer) in question.answers" ng-class="{even: $even, odd: $odd}" layout-padding>
             <div flex="80">
                 {{answer.titleNL}}
             </div>
-            <div flex="20">
-                <!--<md-radio-group layout-align="space-around end" aria-label="text" ng-checked="0" ng-model="answers[questionID][answerID]"
-                layout="row" ng-change="saveAnswer(questionID, answerID, $event)">
-                    <md-radio-button flex="20" value=0 aria-label="text"></md-radio-button>
-                    <md-radio-button flex="20" value=1 class="md-primary" aria-label="text"></md-radio-button>
-                    <md-radio-button flex="20" value=2 class="md-primary" aria-label="text"></md-radio-button>
-                    <md-radio-button flex="20" value=3 class="md-primary" aria-label="text"></md-radio-button>
-                </md-radio-group>-->
+            <div flex="20" align="right">
 
-                <!--<md-input-container class="md-block" flex-gt-sm>
-                    <label>State</label>
-                    <md-select ng-model="answers[questionID][answerID]">
-                        <md-option value=1>
-                            1
-                        </md-option>
-                        <md-option value=2>
-                            2</md-option>
-                    </md-select>
-                </md-input-container>-->
-                <section layout-align="center center" layout="row" ng-click="saveAnswer(questionID, answerID, $event)">
-                    <md-button ng-model="answers[questionID][answerID]"  ng-click="saveAnswer(questionID, answerID, $event)" class="md-raised md-primary md-buttonBtn1" ng-show="answers[questionID][answerID] === 1">1</md-button>
-                    <md-button ng-click="saveAnswer(questionID, answerID, $event)" class="md-primary md-buttonBtn1" ng-show="answers[questionID][answerID] !== 1">1</md-button>
-                    
-                    <md-button ng-click="saveAnswer(questionID, answerID, $event)" class="md-raised md-primary md-buttonBtn1" ng-show="answers[questionID][answerID] === 2">2</md-button>
-                    <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event)" class="md-primary md-buttonBtn1" ng-show="answers[questionID][answerID] !== 2">2</md-button>
-                    
-                    <md-button ng-click="saveAnswer(questionID, answerID, $event)" class="md-raised md-primary md-buttonBtn1" ng-show="answers[questionID][answerID] === 3">3</md-button>
-                    <md-button class="md-primary md-buttonBtn1" ng-show="answers[questionID][answerID] !== 3">3</md-button>
+
+                <section layout-align="center center" layout="row">
+                    <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 1)" ng-class="{'md-raised': answers[questionID][answerID] === 1}"
+                    class=" md-primary md-buttonBtn1">1</md-button>
+                    <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 2)" ng-class="{'md-raised': answers[questionID][answerID] === 2}"
+                    class=" md-primary md-buttonBtn1">2</md-button>
+                    <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 3)" ng-class="{'md-raised': answers[questionID][answerID] === 3}"
+                    class=" md-primary md-buttonBtn1">3</md-button>
                 </section>
-                <!--<span ng-repeat="index in [0, 1, 2, 3]">
-                                <input type="radio" ng-model="answers[questionID][answerID]" value="{{ index }}"
-                                       name="{{ 'q' + questionID + 'a' + answerID }}}" ng-click="saveAnswer(questionID, answerID, index, $event)"> {{ index }}
-                </span>-->
+
             </div>
+
         </div>
-        <div ng-show="getAnswerPoints(questionID) > 3">
-            <p style="color: red">Geef maximaal 3 punten per vraag.</p>
+        <div layout-padding ng-show="getAnswerPoints(questionID) > 3">
+            <p style="color: red">Geef maximaal 3 punten per vraag. Tip: Klik op een gegeven antwoord om deze weer op nul te zetten.</p>
         </div>
     </md-whiteframe>
 
 
 </div>
 
-<md-button align="center" class="md-primary" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
-<div align="center" ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer ale vragen volledig zijn beantwoord zal de knop 'Afronden' beschikbaar komen</div>
+<div layout-align="center center" layout="column">
+    <md-button class="md-primary md-raised" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
+    <div ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer aan alle vragen drie punten zijn toebedeeld zal de knop 'Afronden' beschikbaar komen</div>
+</div>
