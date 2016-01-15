@@ -1,9 +1,8 @@
-
-<md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="column" layout-padding>
+<md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="column" layout-padding layout-align="center center">
 
     <md-input-container>
         <label>Email</label>
-        <input  type="email" ng-model="email" ng-change="checkEmail(email)" >
+        <input ng-pattern="/^.+@.+\..+$/" ng-model="email" ng-change="checkEmail(email)">
     </md-input-container>
 
     <md-input-container>
@@ -11,7 +10,7 @@
         <input type="password" ng-model="pass">
     </md-input-container>
 
-    <md-input-container  ng-hide="!email || knownEmail || !pass">
+    <md-input-container ng-hide="!email || knownEmail || !pass">
         <label>Bevestigen wachtwoord</label>
         <input type="password" ng-model="confirm">
     </md-input-container>
@@ -19,7 +18,7 @@
     <md-button class="md-primary" ng-click="login(email, pass)" ng-show="knownEmail">Inloggen</md-button>
     <md-button class="md-primary" ng-click="createAccount()" ng-hide="knownEmail">Registreren</md-button>
     <md-button class="md-primary" ng-click="resetMyPass(email)" ng-show="knownEmail">Reset wachtwoord</md-button>
-<p ng-show="err" class="error">{{err}}</p>
+    <p ng-show="err" class="error">{{err}}</p>
 </md-whiteframe>
 
 
