@@ -86,9 +86,9 @@ $mdThemingProvider.definePalette('HumanBlue', {
   'contrastDarkColors': '50 100 200 300 400 500 600 700 800 A100 A200 A400 A700'
 }); 
   $mdThemingProvider.theme('default')
-    .primaryPalette('HumanRed')
+    .primaryPalette('teal')
     .warnPalette('red')
-    .accentPalette('HumanBlue');
+    .accentPalette('orange');
 })
 
 
