@@ -80,7 +80,8 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                     })
                     .then(function (/* user */) {
                         // redirect to the account page
-                        $location.path('/account');
+                        // $location.path('/account');
+                        window.history.back();
                         //window.history.back();
                     }, function (err) {
                         $scope.err = errMessage(err);

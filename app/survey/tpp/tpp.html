@@ -1,72 +1,75 @@
-<!--<md-toolbar class="md-primary md-hue-1">
+
+<div flex-gt-lg="70" > 
+    
+    <md-toolbar class="md-primary md-hue-1">
     <div class="md-toolbar-tools">
         <h2 class="md-flex">TPP vragenlijst {{ surveyHeader.company}}</h2>
     </div>
-</md-toolbar>-->
+</md-toolbar>
+    <md-content ng-show="survey.questions" layout-padding>
+        <p>{{ surveyHeader.extraInformation }}</p>
+        <p>{{ survey.instruction}}</p>
 
-<md-content ng-show="survey.questions" layout-padding>
-    <p>{{ surveyHeader.extraInformation }}</p>
-    <p>{{ survey.instruction}}</p>
+        <div ng-hide="!teams">
+            <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding flex-sm="45" flex-gt-sm="35"
+            flex-gt-md="25">
+                <md-input-container>
+                    <label>Kies uw team</label>
+                    <md-select ng-model="bindedUserReactionDeatils.team">
+                        <md-option ng-repeat="team in teams" value="{{team.teamName}}">
+                            {{team.teamName}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </md-whiteframe>
 
-    <div ng-hide="!teams">
-        <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding flex-sm="45" flex-gt-sm="35"
-        flex-gt-md="25">
-            <md-input-container>
-                <label>Kies uw team</label>
-                <md-select ng-model="bindedUserReactionDeatils.team">
-                    <md-option ng-repeat="team in teams" value="{{team.teamName}}">
-                        {{team.teamName}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
+    </md-content>
+    </div>
+
+    <div ng-repeat="(questionID, question) in survey.questions">
+        <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
+            <div layout="row" id="questionTitle" layout-padding>
+                <div flex="80" class="md-headline" style="margin-bottom: 16px;">
+                    {{questionID + 1}} - {{ question.titleNL }}
+
+
+                </div>
+                <div flex="20" align="right">
+
+                    <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
+                    <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
+
+                </div>
+            </div>
+            <div layout="row" ng-repeat="(answerID, answer) in question.answers" ng-class="{even: $even, odd: $odd}" layout-padding>
+                <div flex="80">
+                    <span style="font-size:1.2em;">{{answer.titleNL}}</span>
+                </div>
+                <div flex="20" align="right">
+
+
+                    <section layout-align="center center" layout="row">
+                        <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 1)" ng-class="{'md-raised': answers[questionID][answerID] === 1}"
+                        class=" md-primary md-buttonBtn1">1</md-button>
+                        <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 2)" ng-class="{'md-raised': answers[questionID][answerID] === 2}"
+                        class=" md-primary md-buttonBtn1">2</md-button>
+                        <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 3)" ng-class="{'md-raised': answers[questionID][answerID] === 3}"
+                        class=" md-primary md-buttonBtn1">3</md-button>
+                    </section>
+
+                </div>
+
+            </div>
+            <div layout-padding ng-show="getAnswerPoints(questionID) > 3">
+                <p style="color: red">Geef maximaal 3 punten per vraag. Tip: Klik op een gegeven antwoord om deze weer op nul te zetten.</p>
+            </div>
         </md-whiteframe>
 
-</md-content>
-</div>
 
-<div ng-repeat="(questionID, question) in survey.questions">
-    <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
-        <div layout="row" id="questionTitle" layout-padding>
-            <div flex="80" class="md-headline" style="margin-bottom: 16px;">
-                {{questionID + 1}} - {{ question.titleNL }}
+    </div>
 
-
-            </div>
-            <div flex="20" align="right">
-
-                <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
-                <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
-
-            </div>
-        </div>
-        <div layout="row" ng-repeat="(answerID, answer) in question.answers" ng-class="{even: $even, odd: $odd}" layout-padding>
-            <div flex="80">
-                {{answer.titleNL}}
-            </div>
-            <div flex="20" align="right">
-
-
-                <section layout-align="center center" layout="row">
-                    <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 1)" ng-class="{'md-raised': answers[questionID][answerID] === 1}"
-                    class=" md-primary md-buttonBtn1">1</md-button>
-                    <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 2)" ng-class="{'md-raised': answers[questionID][answerID] === 2}"
-                    class=" md-primary md-buttonBtn1">2</md-button>
-                    <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 3)" ng-class="{'md-raised': answers[questionID][answerID] === 3}"
-                    class=" md-primary md-buttonBtn1">3</md-button>
-                </section>
-
-            </div>
-
-        </div>
-        <div layout-padding ng-show="getAnswerPoints(questionID) > 3">
-            <p style="color: red">Geef maximaal 3 punten per vraag. Tip: Klik op een gegeven antwoord om deze weer op nul te zetten.</p>
-        </div>
-    </md-whiteframe>
-
-
-</div>
-
-<div layout-align="center center" layout="column">
-    <md-button class="md-primary md-raised" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
-    <div ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer aan alle vragen drie punten zijn toebedeeld zal de knop 'Afronden' beschikbaar komen</div>
+    <div layout-align="center center" layout="column">
+        <md-button class="md-primary md-raised" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
+        <div ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer aan alle vragen drie punten zijn toebedeeld zal de knop 'Afronden' beschikbaar komen</div>
+    </div>
 </div>

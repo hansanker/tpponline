@@ -79,12 +79,6 @@ fieldset {
 }
 
 
-md-radio-button, .md-switch-thumb {
-    
-    margin: 2px;
-
-}
-
 .even{
     background-color: whitesmoke;
 }
@@ -93,6 +87,9 @@ md-radio-button, .md-switch-thumb {
 }
 
 
-.md-buttonBtn1 {  min-width: 30px; min-height: 24px; line-height: 24px ; padding: 0 6 0 6;margin:  0 6px 0 0}
+.md-buttonBtn1 {  min-width: 30px; min-height: 24px; line-height: 24px ; padding: 0 6 0 6;margin:  0 6px 0 0; font-size: 1.2em}
 
 
+html, button, input, select, textarea {
+    font-family: Roboto, serif;
+}

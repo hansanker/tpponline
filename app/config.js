@@ -46,50 +46,76 @@ angular.module('myApp.config', ['ngMaterial'])
   
   
   .config(function ($mdThemingProvider) {
-  
+// tool to make color theme  http://mcg.mbitson.com/#/
 
   $mdThemingProvider.definePalette('HumanRed', {
-  '50': '#fffdfd',
-  '100': '#f4bbbd',
-  '200': '#eb8b8f',
-  '300': '#e14e53',
-  '400': '#dd343a',
-  '500': '#cf2329',
-  '600': '#b51f24',
-  '700': '#9b1a1f',
-  '800': '#801619',
-  '900': '#661114',
-  'A100': '#fffdfd',
-  'A200': '#f4bbbd',
-  'A400': '#dd343a',
-  'A700': '#9b1a1f',
+  '50': '#f9e9e9',
+  '100': '#fde2e4',
+  '200': '#f9aeb3',
+  '300': '#f36c75',
+  '400': '#f14f5b',
+  '500': '#ef3340',
+  '600': '#ed1725',
+  '700': '#d4111e',
+  '800': '#b80e1a',
+  '900': '#9b0c16',
+  'A100': '#ffe7e7',
+  'A200': '#fde2e4',
+  'A400': '#f14f5b',
+  'A700': '#d4111e',
   'contrastDefaultColor': 'light',
-  'contrastDarkColors': '50 100 200 A100 A200'
+  'contrastDarkColors': '50 100 200 300 400 A100 A200 A400'
 });    
       
-$mdThemingProvider.definePalette('HumanBlue', {
-  '50': '#b3bcea',
-  '100': '#b3bcea',
-  '200': '#b3bcea',
-  '300': '#e3e6f7',
-  '400': '#cbd1f1',
-  '500': '#b3bcea',
-  '600': '#9ba7e3',
-  '700': '#8392dd',
-  '800': '#6b7dd6',
-  '900': '#5367cf',
-  'A100': '#b3bcea',
-  'A200': '#b3bcea',
-  'A400': '#cbd1f1',
-  'A700': '#8392dd',
+$mdThemingProvider.definePalette('HumanLightBlue', {
+  '50': '#ffffff',
+  '100': '#ffffff',
+  '200': '#ffffff',
+  '300': '#e9f2f7',
+  '400': '#d3e4ee',
+  '500': '#bdd6e6',
+  '600': '#a7c8de',
+  '700': '#91bad5',
+  '800': '#7aadcd',
+  '900': '#649fc4',
+  'A100': '#ffffff',
+  'A200': '#ffffff',
+  'A400': '#d3e4ee',
+  'A700': '#91bad5',
   'contrastDefaultColor': 'light',
-  'contrastDarkColors': '50 100 200 300 400 500 600 700 800 A100 A200 A400 A700'
+  'contrastDarkColors': '50 100 200 300 400 500 600 700 800 900 A100 A200 A400 A700'
+});
+      
+      
+$mdThemingProvider.definePalette('HumanBlue', {
+  '50': '#c8d7f3',
+  '100': '#c8d7f3',
+  '200': '#c8d7f3',
+  '300': '#8eace5',
+  '400': '#759ae0',
+  '500': '#5c88da',
+  '600': '#4376d4',
+  '700': '#2e65cb',
+  '800': '#2858b2',
+  '900': '#234c99',
+  'A100': '#c8d7f3',
+  'A200': '#c8d7f3',
+  'A400': '#759ae0',
+  'A700': '#2e65cb',
+  'contrastDefaultColor': 'light',
+  'contrastDarkColors': '50 100 200 300 400 A100 A200 A400'
 }); 
   $mdThemingProvider.theme('default')
-    .primaryPalette('teal')
+    .primaryPalette('HumanBlue',{
+        'default': '500'
+    })
     .warnPalette('red')
-    .accentPalette('orange');
+    .accentPalette('HumanRed',{
+      'default': '500'  
+    });
 })
+
+
 
 
 .controller('MainNavigationCtrl', ['$scope', '$mdSidenav',  function ($scope, $mdSidenav ) {

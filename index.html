@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="app/bower_components/html5-boilerplate/css/main.css">
     <link rel="stylesheet" href="app/app.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
 </head>
 
 <body layout="column" ng-cloak ng-controller="MainNavigationCtrl">
@@ -16,10 +16,11 @@
     <!-- Container #1 -->
     <md-toolbar layout="row" >
         <div class="md-toolbar-tools">
-            <md-button ng-click="toggleSidenav('left')" hide-gt-md class="md-icon-button">
+            <md-button ng-click="toggleSidenav('left')"  class="md-icon-button">
+            <!--<md-button ng-click="toggleSidenav('left')" hide-gt-md class="md-icon-button">-->
                 <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
             </md-button>
-            <h1 layout-align-gt-sm="center" class="md-toolbar-tools">TPP online</h1>
+            <h1 layout-align-gt-sm="center" class="md-toolbar-tools">Human Connection</h1>
         </div>
     </md-toolbar>
 
@@ -27,34 +28,33 @@
     <div flex layout="row">
 
         <!-- Container #3 -->
-        <md-sidenav md-is-locked-open="$mdMedia('gt-md')" md-component-id="left" class="md-whiteframe-z2" >
+        <!--<md-sidenav md-is-locked-open="$mdMedia('gt-md')" md-component-id="left" class="md-whiteframe-z2" >-->
+        <md-sidenav  md-component-id="left" class="md-whiteframe-z2" >
 
             <md-button ng-href="#/home" ng-click="toggleSidenav('left', 'selectLG')">
                 <img ng-src="" class="face" alt=""> Startpagina
             </md-button>
-            <md-button ng-href="#/measure" ng-click="toggleSidenav('left', 'c')">
+            <!--<md-button ng-href="#/measure" ng-click="toggleSidenav('left', 'c')">
                 <img ng-src="" class="face" alt=""> Maatregelen
-            </md-button>
+            </md-button>-->
             <md-button ng-href="#/mySurveys" ng-click="toggleSidenav('left', 'c')">
                 <img ng-src="" class="face" alt=""> Vragenlijst
             </md-button>
-            <md-button ng-href="#/chat" ng-click="toggleSidenav('left', 'c')">
+            <!--<md-button ng-href="#/chat" ng-click="toggleSidenav('left', 'c')">
                 <img ng-src="" class="face" alt=""> Chat
-            </md-button>
+            </md-button>-->
             <md-button ng-hide="loggedIn" ng-href="#/login" ng-click="toggleSidenav('left', 'c')">
                 <img ng-src="" class="face" alt=""> Login
             </md-button>
             <md-button ng-show="loggedIn" ng-href="#/account" ng-click="toggleSidenav('left', 'c')">
                 <img ng-src="" class="face" alt=""> Account
             </md-button>
-            <md-button ng-href="#/survey" ng-click="toggleSidenav('left', 'c')">
-                <img ng-src="" class="face" alt=""> Maatrsdegelen
-            </md-button>
+           
         </md-sidenav>
 
         <!-- Container #4 -->
-        <md-content flex id="content" layout-margin/>
-            <div ng-view=""></div>
+        <md-content flex id="content" layout-margin >
+            <div ng-view="" layout="row" layout-align="center center"></div>
         </md-content>
 
     </div>
