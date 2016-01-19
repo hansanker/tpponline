@@ -8,7 +8,8 @@
 </md-toolbar>
     <md-content ng-show="survey.questions" layout-padding>
         <p>{{ surveyHeader.extraInformation }}</p>
-        <p>{{ survey.instruction}}</p>
+        
+        <p>Instructie<br>{{ survey.instruction}}</p>
 
         <div ng-hide="!teams">
             <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding flex-sm="45" flex-gt-sm="35"
@@ -61,7 +62,7 @@
 
             </div>
             <div layout-padding ng-show="getAnswerPoints(questionID) > 3">
-                <p style="color: red">Geef maximaal 3 punten per vraag. Tip: Klik op een gegeven antwoord om deze weer op nul te zetten.</p>
+                <p style="color: red">Geef maximaal 3 punten per vraag. Tip: klik op een gegeven antwoord om deze weer op nul te zetten.</p>
             </div>
         </md-whiteframe>
 
@@ -70,6 +71,6 @@
 
     <div layout-align="center center" layout="column">
         <md-button class="md-primary md-raised" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
-        <div ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer aan alle vragen drie punten zijn toebedeeld zal de knop 'Afronden' beschikbaar komen</div>
+        <div ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer aan alle vragen drie punten zijn toegekend zal de knop 'Afronden' beschikbaar komen</div>
     </div>
 </div>
