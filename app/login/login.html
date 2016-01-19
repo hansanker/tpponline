@@ -1,10 +1,12 @@
-<span style="font-size:1.2em;">Aanmelden</span>
+<div layout="column" flex-sm="80" flex-gt-sm="50" flex-gt-md="30">
 
-<md-whiteframe class="md-whiteframe-2dp" flex-sm="80" flex-gt-sm="50" flex-gt-md="30" layout="column" layout-padding>
+<p class="md-headline" >Aanmelden</p>
+<span>Indien u voor het eerst aanmeld zal een bevestiging van het wachtwoord worden gevraagd.<br><br><span>
+<md-whiteframe class="md-whiteframe-2dp"  layout="column" layout-padding>
 
     <md-input-container>
         <label>Email</label>
-        <input ng-pattern="/^.+@.+\..+$/" ng-model="email" ng-change="checkEmail(email)">
+        <input ng-pattern="/^.+@.+\..+$/" ng-model="email" ng-change="checkEmail(email)" autocomplete="off">
     </md-input-container>
 
     <md-input-container>
