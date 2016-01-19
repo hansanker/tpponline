@@ -61,7 +61,12 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
 
         $scope.createAccount = function () {
+            
+            $scope.buttonDisabled = true;
+            console.log($scope.buttonDisabled)
             $scope.err = null;
+            
+            
             if (assertValidAccountProps()) {
                 var email = $scope.email;
                 var pass = $scope.pass;

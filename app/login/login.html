@@ -20,7 +20,7 @@
     </md-input-container>
 
     <md-button class="md-primary" ng-click="login(email, pass)" ng-show="knownEmail">Inloggen</md-button>
-    <md-button class="md-primary" ng-click="createAccount()" ng-hide="!email || knownEmail">Registreren</md-button>
+    <md-button class="md-primary" ng-click="createAccount()" ng-disabled="buttonDisabled" ng-hide="!email || knownEmail">Registreren</md-button>
     <md-button class="md-primary" ng-click="resetMyPass(email)" ng-show="knownEmail">Reset wachtwoord</md-button>
     <p ng-show="err" class="error">{{err}}</p>
 </md-whiteframe>
