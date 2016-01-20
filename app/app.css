@@ -93,3 +93,10 @@ fieldset {
 html, button, input, select, textarea {
     font-family: Roboto, serif;
 }
+
+
+md-card {
+  
+    margin: 0;
+   
+}

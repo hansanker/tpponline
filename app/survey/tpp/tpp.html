@@ -1,33 +1,28 @@
+<div flex-gt-md="70" ng-show="survey.questions">
 
-<div flex-gt-lg="70" > 
-    
-    <md-toolbar class="md-primary md-hue-1">
-    <div class="md-toolbar-tools">
-        <h2 class="md-flex">TPP vragenlijst {{ surveyHeader.company}}</h2>
-    </div>
-</md-toolbar>
-    <md-content ng-show="survey.questions" layout-padding>
-        <p>{{ surveyHeader.extraInformation }}</p>
-        
-        <p>Instructie:<br>{{ survey.instruction}}</p>
 
-        <div ng-hide="!teams">
-            <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding flex-sm="45" flex-gt-sm="35"
-            flex-gt-md="25">
-                <md-input-container>
-                    <label>Kies uw team</label>
-                    <md-select ng-model="bindedUserReactionDeatils.team">
-                        <md-option ng-repeat="team in teams" value="{{team.teamName}}">
-                            {{team.teamName}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-            </md-whiteframe>
+    <md-card class="md-whiteframe-z2" style="margin-bottom: 32px;">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{ surveyHeader.company}}</span>
+                <span class="md-subhead">TPP vragenlijst</span>
+                <p>{{ surveyHeader.extraInformation }}</p>
+                <p>Instructie:
+                    <br>{{ survey.instruction}}</p>
+            </md-card-title-text>
+            <md-card-title-media hide-sm hide-xs>
+                <div class="md-media-xl card-media"><img src="../app/images/logoHC.jpg"></div>
+            </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-show="!beginnen && !surveyCompleted" ng-click="beginnen= true">Starten</md-button>
+            <md-button ng-show="!beginnen && surveyCompleted" ng-click="beginnen= true">Antwoorden weegeven</md-button>
+        </md-card-actions>
+    </md-card>
 
-    </md-content>
-    </div>
 
-    <div ng-repeat="(questionID, question) in survey.questions">
+
+    <div ng-repeat="(questionID, question) in survey.questions" ng-show="beginnen">
         <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding>
             <div layout="row" id="questionTitle" layout-padding>
                 <div flex="80" class="md-headline" style="margin-bottom: 16px;">
@@ -37,8 +32,10 @@
                 </div>
                 <div flex="20" align="right">
 
-                    <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3" align="right"> check_box_outline_blank </md-icon>
-                    <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3" align="right"> check_box </md-icon>
+                    <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) != 3 && !surveyCompleted" align="right">
+                    check_box_outline_blank </md-icon>
+                    <md-icon class="md-accent" md-font-set="material-icons" ng-show="getAnswerPoints(questionID) == 3 && !surveyCompleted" align="right">
+                    check_box </md-icon>
 
                 </div>
             </div>
@@ -48,8 +45,9 @@
                 </div>
                 <div flex="20" align="right">
 
+                    <span ng-show="surveyCompleted"> {{ answers[questionID][answerID] }} </span>
 
-                    <section layout-align="center center" layout="row">
+                    <section layout-align="center center" layout="row" ng-show="!surveyCompleted">
                         <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 1)" ng-class="{'md-raised': answers[questionID][answerID] === 1}"
                         class=" md-primary md-buttonBtn1">1</md-button>
                         <md-button ng-model="answers[questionID][answerID]" ng-click="saveAnswer(questionID, answerID, $event, 2)" ng-class="{'md-raised': answers[questionID][answerID] === 2}"
@@ -65,12 +63,25 @@
                 <p style="color: red">Geef maximaal 3 punten per vraag. Tip: klik op een gegeven antwoord om deze weer op nul te zetten.</p>
             </div>
         </md-whiteframe>
-
-
     </div>
 
-    <div layout-align="center center" layout="column">
-        <md-button class="md-primary md-raised" ng-show="survey.questions" ng-disabled="!allQuestionsAnswered()">Afronden</md-button>
-        <div ng-show="survey.questions" ng-disabled="allQuestionsAnswered()">Wanneer aan alle vragen drie punten zijn toegekend zal de knop 'Afronden' beschikbaar komen</div>
+    <div ng-show="beginnen && teams && !surveyCompleted">
+        <md-whiteframe class="md-whiteframe-z2" layout="column" style="margin-bottom: 32px;" layout-padding flex-sm="45" flex-gt-sm="35"
+        flex-gt-md="25">
+            <span class="md-headline">Overige vragen</span>
+            <md-input-container>
+                <label>Kies uw team</label>
+                <md-select ng-model="bindedUserReactionDeatils.team">
+                    <md-option ng-repeat="team in teams" value="{{team.teamName}}">
+                        {{team.teamName}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </md-whiteframe>
+    </div>
+
+    <div layout-align="center center" layout="column" ng-show="beginnen && !surveyCompleted">
+        <md-button class="md-primary md-raised" ng-disabled="!allQuestionsAnswered()" ng-click="completeSurvey()" ng-click="beginnen=null">Afronden</md-button>
+        <div ng-disabled="allQuestionsAnswered()">Wanneer aan alle vragen drie punten zijn toegekend zal de knop 'Afronden' beschikbaar komen</div>
     </div>
 </div>

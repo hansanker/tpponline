@@ -13,6 +13,12 @@
 
         $scope.userAnswers = {};
 
+        userReactionDetailsRef.once("value", function (snapshot) {
+            if (snapshot.child("completed").exists()) {
+                $scope.surveyCompleted = snapshot.child("completed").val();
+            }
+        });
+
         surveyHeaderRef.once('value', function (surveySnapshot) {
             var surveyHeader = surveySnapshot.val();
             $scope.surveyHeader = surveyHeader;
@@ -59,6 +65,11 @@
             }
 
             $scope.answers.$save();
+        };
+
+        $scope.completeSurvey = function () {
+            userReactionDetailsRef.child('completed').set(true);
+            $scope.surveyCompleted = true;
         };
 
         $scope.getAnswerPoints = function (questionID) {
