@@ -18,8 +18,10 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
             $scope.err = null;
             Auth.$authWithPassword({ email: email, password: pass }, { rememberMe: true })
                 .then(function (/* user */) {
-                    window.history.back();
-                    console.log("asdasd");
+                    // window.history.back();
+                  
+                    $location.path('/survey');
+                    $scope.$apply();
                 }, function (err) {
                     $scope.err = errMessage(err);
                 });
@@ -31,12 +33,12 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
             $scope.knownEmail = false;
             var users = fbutil.ref().child('users')
             users.once("value", function (allUserMessagesSnapshot) {
-                allUserMessagesSnapshot.forEach(function (userSnapshot) { 
+                allUserMessagesSnapshot.forEach(function (userSnapshot) {
                     var userEmail = userSnapshot.child("email").val();  // e.g. "barney"
                     if (userEmail === email) {
-                         $scope.knownEmail = true;
-                    }        
-                   
+                        $scope.knownEmail = true;
+                    }
+
                 });
             });
 
@@ -62,12 +64,12 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
 
 
         $scope.createAccount = function () {
-            
+
             $scope.buttonDisabled = true;
             console.log($scope.buttonDisabled)
             $scope.err = null;
-            
-            
+
+
             if (assertValidAccountProps()) {
                 var email = $scope.email;
                 var pass = $scope.pass;
@@ -87,7 +89,10 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                     .then(function (/* user */) {
                         
                         // $location.path('/account');
-                        window.history.back();
+                        // $window.history.back();
+                   $location.path('/survey');
+                   $scope.$apply();
+
                     }, function (err) {
                         $scope.err = errMessage(err);
                     });
