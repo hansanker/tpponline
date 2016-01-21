@@ -6,12 +6,12 @@
 
     <md-input-container>
         <label>Email</label>
-        <input ng-pattern="/^.+@.+\..+$/" ng-model="email" ng-change="checkEmail(email)" autocomplete="off">
+        <input type="email" ng-pattern="/^.+@.+\..+$/" ng-model="email" ng-change="checkEmail(email)" >
     </md-input-container>
 
     <md-input-container>
         <label>Wachtwoord</label>
-        <input type="password" ng-model="pass">
+        <input type="password" ng-model="pass" autocomplete="off">
     </md-input-container>
 
     <md-input-container ng-hide="!email || knownEmail || !pass">

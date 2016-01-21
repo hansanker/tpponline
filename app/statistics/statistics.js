@@ -20,8 +20,17 @@
         var reactionsList = $firebaseArray(fbutil.ref().child('SurveyReactions').child(headerID));
         var users = $firebaseObject(fbutil.ref().child('users'));
 
-        $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-        $scope.data = [300, 500, 100];
+
+ $scope.labelsPie = ["Proactief", "Actief", "Reactief"];
+  $scope.dataPie = [300, 500, 100];
+
+        // $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+        // $scope.series = ['Series A', 'Series B'];
+
+        // $scope.data = [
+        //     [65, 59, 80, 81, 56, 55, 40],
+        //     [28, 48, 40, 19, 86, 27, 90]
+        // ];
 
         header.$loaded(function () {
 
@@ -40,7 +49,8 @@
                                 questionSubject: question.subject,
                                 questionTheme: question.theme,
                                 answerID: answerID,
-                                answerTitle: answer.titleNL
+                                answerTitle: answer.titleNL,
+                                answerCulture: answer.culture
                             };
                         }
                     }
@@ -53,7 +63,12 @@
                                 dataEntry.userID = reaction.$id;
                                 dataEntry.userName = users[reaction.$id].name;
                                 dataEntry.userMail = users[reaction.$id].email;
-                                console.log(dataEntry.userMail)
+                                
+                                
+                                if (dataEntry.answerCulture === "active") {
+                                    $scope.pointsReactive =+ $scope.pointsReactive;
+                                }
+                                console.log($scope.pointsReactive)
                             });
                         });
                     });

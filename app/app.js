@@ -14,7 +14,9 @@ angular.module('myApp', [
     'myApp.mySurveys',
     'myApp.measure',
     'myApp.statistics',
-    'ngMaterial'
+    'ngMaterial',
+    'chart.js'
+    // 'Chart'
    
   ])
   
