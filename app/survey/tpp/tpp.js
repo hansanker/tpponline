@@ -10,15 +10,16 @@
         var userReactionDetailsRef = fbutil.ref().child('users').child(user.uid).child('surveys').child(surveyHeaderID);
 
         $scope.userReactionDetailsRefObject = $firebaseObject(userReactionDetailsRef).$bindTo($scope, "bindedUserReactionDeatils");
-
         $scope.userAnswers = {};
-
+        
+        //check if completed
         userReactionDetailsRef.once("value", function (snapshot) {
             if (snapshot.child("completed").exists()) {
                 $scope.surveyCompleted = snapshot.child("completed").val();
             }
         });
 
+        //get answers
         surveyHeaderRef.once('value', function (surveySnapshot) {
             var surveyHeader = surveySnapshot.val();
             $scope.surveyHeader = surveyHeader;
@@ -46,6 +47,7 @@
             $scope.answers = answersObject;
         });
 
+        //check total points
         $scope.totalPoints = function () {
             var answers = $scope.answers;
             var totalPoints = 0;

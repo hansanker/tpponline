@@ -12,22 +12,27 @@
         }
     }]);
 
+
+
     app.controller('StatisticsSpecificationCtrl', ['$scope', '$routeParams', '$location', 'user', 'fbutil', '$firebaseObject', '$firebaseArray', function ($scope, $routeParams, $location, user, fbutil, $firebaseObject, $firebaseArray) {
         var headerID = $routeParams['surveyHeaderID'];
         var header = $firebaseObject(fbutil.ref().child('SurveyHeaders').child(headerID));
         var reactionsList = $firebaseArray(fbutil.ref().child('SurveyReactions').child(headerID));
         var users = $firebaseObject(fbutil.ref().child('users'));
 
-        header.$loaded(function(){
-           
-            reactionsList.$loaded(function(){
-                 var data = {};
-                users.$loaded(function(){
+        $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+        $scope.data = [300, 500, 100];
+
+        header.$loaded(function () {
+
+            reactionsList.$loaded(function () {
+                var data = {};
+                users.$loaded(function () {
                     var questions = header.template.questions;
-                    
-                    for(var questionID in questions){
+
+                    for (var questionID in questions) {
                         var question = questions[questionID];
-                        for(var answerID in question.answers){
+                        for (var answerID in question.answers) {
                             var answer = question.answers[answerID];
                             data[questionID + '|' + answerID] = {
                                 questionID: questionID,
@@ -40,9 +45,9 @@
                         }
                     }
 
-                    angular.forEach(reactionsList, function(reaction) {
-                        angular.forEach(reaction, function(question, questionID){
-                            angular.forEach(question, function(answer, answerID){
+                    angular.forEach(reactionsList, function (reaction) {
+                        angular.forEach(reaction, function (question, questionID) {
+                            angular.forEach(question, function (answer, answerID) {
                                 var dataEntry = data[questionID + '|' + answerID];
                                 dataEntry.answerResult = answer;
                                 dataEntry.userID = reaction.$id;

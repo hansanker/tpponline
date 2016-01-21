@@ -15,6 +15,7 @@ angular.module('myApp', [
     'myApp.measure',
     'myApp.statistics',
     'ngMaterial'
+   
   ])
   
   .config(['$routeProvider', function ($routeProvider) {
