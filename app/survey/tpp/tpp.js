@@ -70,6 +70,7 @@
         $scope.completeSurvey = function () {
             userReactionDetailsRef.child('completed').set(true);
             $scope.surveyCompleted = true;
+            $scope.beginnen = undefined;
         };
 
         $scope.getAnswerPoints = function (questionID) {

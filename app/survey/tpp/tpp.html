@@ -7,8 +7,8 @@
                 <span class="md-headline">{{ surveyHeader.company}}</span>
                 <span class="md-subhead">TPP vragenlijst</span>
                 <p>{{ surveyHeader.extraInformation }}</p>
-                <p>Instructie:
-                    <br>{{ survey.instruction}}</p>
+                <p ng-show="!surveyCompleted">Instructie:<br>{{ survey.instruction}}</p>
+                <p ng-show="surveyCompleted">De vragenlijst is met succes afgerond.</p>
             </md-card-title-text>
             <md-card-title-media hide-sm hide-xs>
                 <div class="md-media-xl card-media"><img src="../app/images/logoHC.jpg"></div>
