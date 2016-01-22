@@ -18,10 +18,9 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
             $scope.err = null;
             Auth.$authWithPassword({ email: email, password: pass }, { rememberMe: true })
                 .then(function (/* user */) {
-                    // window.history.back();
+                    window.history.back();
                   
-                    $location.path('/survey');
-                    $scope.$apply();
+                    
                 }, function (err) {
                     $scope.err = errMessage(err);
                 });
@@ -88,10 +87,9 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                     })
                     .then(function (/* user */) {
                         
-                        // $location.path('/account');
-                        // $window.history.back();
-                   $location.path('/survey');
-                   $scope.$apply();
+                       
+                       window.history.back();
+                
 
                     }, function (err) {
                         $scope.err = errMessage(err);
