@@ -7,6 +7,8 @@
     $scope.syncedValue = $firebaseObject(fbutil.ref('syncedValue'));
     $scope.user = user;
     $scope.FBURL = FBURL;
+    
+    
   }]);
 
   app.config(['$routeProvider', function ($routeProvider) {

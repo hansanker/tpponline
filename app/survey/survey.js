@@ -8,6 +8,8 @@
 
         /* TODO 1: Check if user already has this survey in their profile */
         console.log(user.uid);
+   
+        
         var ref = fbutil.ref();
         ref.once("value", function (snapshot) {
             //if (snapshot.child("users/2f75583e-4199-4424-83ad-f6486e4b45e9/surveys/-K-t52g5-osgYHQ_xJir").exists()) {
@@ -37,7 +39,8 @@
     }]);
 
 
-    app.config(['$routeProvider', function ($routeProvider) {
+    app.config(['$routeProvider', function ($routeProvider ) {
+        
         $routeProvider.whenAuthenticated('/survey/:surveyHeaderID', {
             templateUrl: 'app/survey/survey.html',
             controller: 'SurveyCtrl'

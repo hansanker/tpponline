@@ -8,7 +8,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
         });
     }])
 
-    .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', function ($scope, Auth, $location, fbutil) {
+    .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', '$rootScope', 'loginRedirectPath', function ($scope, Auth, $location, fbutil, $rootScope, loginRedirectPath) {
         $scope.email = null;
         $scope.pass = null;
         $scope.confirm = null;
@@ -18,14 +18,16 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
             $scope.err = null;
             Auth.$authWithPassword({ email: email, password: pass }, { rememberMe: true })
                 .then(function (/* user */) {
-                    window.history.back();
-                  
-                    
+
+                    if ($rootScope.FUCK) {
+
+                        $location.path('/survey/' + $rootScope.FUCK);
+                    }
+
                 }, function (err) {
                     $scope.err = errMessage(err);
                 });
         };
-
 
         //check email       
         $scope.checkEmail = function (email) {
@@ -86,10 +88,10 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                         });
                     })
                     .then(function (/* user */) {
-                        
-                       
-                       window.history.back();
-                
+
+                        if ($rootScope.FUCK) {
+                            $location.path('/survey/' + $rootScope.FUCK);
+                        }
 
                     }, function (err) {
                         $scope.err = errMessage(err);

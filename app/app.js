@@ -12,6 +12,7 @@ angular.module('myApp', [
     'myApp.survey',
     'myApp.TPPsurvey',
     'myApp.mySurveys',
+    'myApp.surveyStart',
     'myApp.measure',
     'myApp.statistics',
     'ngMaterial',
