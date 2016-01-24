@@ -20,7 +20,6 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                 .then(function (/* user */) {
 
                     if ($rootScope.FUCK) {
-
                         $location.path('/survey/' + $rootScope.FUCK);
                     }
 
@@ -38,14 +37,13 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                     var userEmail = userSnapshot.child("email").val();  // e.g. "barney"
                     if (userEmail === email) {
                         $scope.knownEmail = true;
+                    } else {
+                        $scope.knownEmail = undefined;
                     }
 
                 });
             });
-
         };
-
-
 
         //change pass
 

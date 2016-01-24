@@ -17,7 +17,7 @@ angular.module('myApp', [
     'myApp.statistics',
     'ngMaterial',
     'chart.js'
-    // 'Chart'
+ 
    
   ])
   

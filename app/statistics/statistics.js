@@ -21,8 +21,8 @@
         var users = $firebaseObject(fbutil.ref().child('users'));
 
 
- $scope.labelsPie = ["Proactief", "Actief", "Reactief"];
-  $scope.dataPie = [300, 500, 100];
+        $scope.labelsPie = ["Proactief", "Actief", "Reactief"];
+        $scope.dataPie = [300, 500, 100];
 
         // $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
         // $scope.series = ['Series A', 'Series B'];
@@ -63,11 +63,13 @@
                                 dataEntry.userID = reaction.$id;
                                 dataEntry.userName = users[reaction.$id].name;
                                 dataEntry.userMail = users[reaction.$id].email;
-                                
-                                
+
+
                                 if (dataEntry.answerCulture === "active") {
-                                    $scope.pointsReactive =+ $scope.pointsReactive;
+                                    $scope.pointsReactive = + $scope.pointsReactive;
                                 }
+
+
                                 console.log($scope.pointsReactive)
                             });
                         });
