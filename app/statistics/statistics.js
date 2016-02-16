@@ -8,17 +8,19 @@
         $scope.headers = headersRef;
         
         
-        // var reactionsList = $firebaseArray(fbutil.ref().child('SurveyReactions').child(headerID));
+        /*// var reactionsList = $firebaseArray(fbutil.ref().child('SurveyReactions').child(headerID));
          for (var headerID in headersRef) {  
-            //  var header = headersRef[headerID];
+            
             // console.log(headersRef[headerID][key]);
+            
+            
             var teamsRef = [headersRef][teams];
              for (var teamID in teamsRef) {
                  console.log('ok')
              }
              
              
-         }
+         }*/
         
 
         
