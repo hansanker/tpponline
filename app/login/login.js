@@ -28,26 +28,44 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                 });
         };
 
+        //check action login       
+        $scope.actionLogin = function (newAccount) {
+           
+            if (newAccount === true) {
+                $scope.createModus = true;
+            } 
+             if (newAccount === false) {
+                $scope.createModus = false;
+            } 
+            
+        };
+
+
+
         //check email       
         $scope.checkEmail = function (email) {
-            $scope.knownEmail = false;
+            $scope.knownEmail = undefined;
             var users = fbutil.ref().child('users')
             users.once("value", function (allUserMessagesSnapshot) {
                 allUserMessagesSnapshot.forEach(function (userSnapshot) {
                     var userEmail = userSnapshot.child("email").val();  // e.g. "barney"
+                    console.log(userEmail)
                     if (userEmail === email) {
                         $scope.knownEmail = true;
-                    } else {
-                        $scope.knownEmail = undefined;
-                    }
-
+                        
+                        console.log($scope.knownEmail)
+                        return
+                    } 
                 });
             });
+            
+           
         };
 
         //change pass
-
+        
         $scope.resetMyPass = function (myEmail) {
+            $scope.err = null;
             var ref = fbutil.ref();
             ref.resetPassword({
                 email: myEmail
@@ -55,7 +73,9 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
                 if (error === null) {
                     console.log("Password reset email sent successfully");
                 } else {
+                     
                     console.log("Error sending password reset email:", error);
+                    
                 }
             });
         };

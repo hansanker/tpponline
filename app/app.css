@@ -100,3 +100,11 @@ md-card {
     margin: 0;
    
 }
+
+md-input-container {
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+    margin: 8px 0;
+    vertical-align: middle;
+}

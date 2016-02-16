@@ -6,7 +6,23 @@
     app.controller('StatisticsCtrl', ['$scope', '$routeParams', '$location', 'user', '$firebaseArray', 'fbutil', function ($scope, $routeParams, $location, user, $firebaseArray, fbutil) {
         var headersRef = $firebaseArray(fbutil.ref().child('SurveyHeaders'));
         $scope.headers = headersRef;
+        
+        
+        // var reactionsList = $firebaseArray(fbutil.ref().child('SurveyReactions').child(headerID));
+         for (var headerID in headersRef) {  
+            //  var header = headersRef[headerID];
+            // console.log(headersRef[headerID][key]);
+            var teamsRef = [headersRef][teams];
+             for (var teamID in teamsRef) {
+                 console.log('ok')
+             }
+             
+             
+         }
+        
 
+        
+        
         $scope.redirectToDetail = function (headerID) {
             $location.path('/statistics/specification/' + headerID);
         }

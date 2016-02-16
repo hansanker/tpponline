@@ -1,9 +1,21 @@
 <div layout="column" flex-sm="80" flex-gt-sm="50" flex-gt-md="30">
 
-<p class="md-headline" >Welkom op de Human Connection portal</p>
-<span>Indien u voor het eerst aanmeld zal een bevestiging van het wachtwoord worden gevraagd.<br><br><span>
+    <p class="md-headline">Welkom op de Human Connection portal</p>
+
+    <span><br><br><span>
 <md-whiteframe class="md-whiteframe-2dp"  layout="column" layout-padding>
 
+<div layout="column" >
+<md-button class="md-raised md-accent" ng-hide="createModus">Ik heb een account</md-button>
+<md-button class="md-primary md-accent" ng-hide="!createModus" ng-click="actionLogin(false)">Ik heb een account</md-button>
+
+
+<md-button class="md-primary md-accent" ng-hide="createModus" ng-click="actionLogin(true)">Nieuw account aanmaken</md-button>
+<md-button class="md-raised md-accent" ng-hide="!createModus" >Nieuw account aanmaken</md-button>
+
+
+</div>
+<div  layout="column" >
     <md-input-container>
         <label>Email</label>
         <input type="email" ng-pattern="/^.+@.+\..+$/" ng-model="email" ng-change="checkEmail(email)" >
@@ -14,15 +26,22 @@
         <input type="password" ng-model="pass" autocomplete="off">
     </md-input-container>
 
-    <md-input-container ng-hide="!email || knownEmail || !pass">
+    <md-input-container ng-hide="!createModus">
         <label>Bevestigen wachtwoord</label>
         <input type="password" ng-model="confirm">
     </md-input-container>
+</div>
 
-    <md-button class="md-primary" ng-click="login(email, pass)" ng-show="knownEmail">Inloggen</md-button>
-    <md-button class="md-primary" ng-click="createAccount()" ng-disabled="buttonDisabled" ng-hide="!email || knownEmail">Registreren</md-button>
-    <md-button class="md-primary" ng-click="resetMyPass(email)" ng-show="knownEmail">Reset wachtwoord</md-button>
+<div layout="column" >
+    <md-button class="md-raised md-primary" ng-click="login(email, pass)" ng-hide="createModus">Inloggen</md-button>
+    <md-button class="md-raised md-primary" ng-click="createAccount()" ng-disabled="buttonDisabled" ng-hide="!createModus">Registreren</md-button>
+    <md-button class="md-primary" ng-click="resetMyPass(email)" ng-show="knownEmail=true" ng-hide="createModus">Reset wachtwoord</md-button>
+    
     <p ng-show="err" class="error">{{err}}</p>
+    
+ </div>   
+    
+    
 </md-whiteframe>
 
 </div>
