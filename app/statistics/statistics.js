@@ -7,24 +7,10 @@
         var headersRef = $firebaseArray(fbutil.ref().child('SurveyHeaders'));
         $scope.headers = headersRef;
         
-        
-        /*// var reactionsList = $firebaseArray(fbutil.ref().child('SurveyReactions').child(headerID));
-         for (var headerID in headersRef) {  
-            
-            // console.log(headersRef[headerID][key]);
-            
-            
-            var teamsRef = [headersRef][teams];
-             for (var teamID in teamsRef) {
-                 console.log('ok')
-             }
-             
-             
-         }*/
-        
+       
 
-        
-        
+
+
         $scope.redirectToDetail = function (headerID) {
             $location.path('/statistics/specification/' + headerID);
         }
@@ -39,24 +25,34 @@
         var users = $firebaseObject(fbutil.ref().child('users'));
 
 
+
+var answersRef = [];
+answersRef = fbutil.ref().child('SurveyReactions').child(headerID);
+var answersObject = $firebaseArray(answersRef);
+console.log(answersObject)
+        $scope.testaa = [];
+
+      $scope.test2 = function () {
+            
+            $scope.testaa = _.map(answersObject, function (value) {
+                return value
+            });
+
+        }
+        
+       
+
+
         $scope.labelsPie = ["Proactief", "Actief", "Reactief"];
         $scope.dataPie = [300, 500, 100];
 
-        // $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-        // $scope.series = ['Series A', 'Series B'];
 
-        // $scope.data = [
-        //     [65, 59, 80, 81, 56, 55, 40],
-        //     [28, 48, 40, 19, 86, 27, 90]
-        // ];
 
         header.$loaded(function () {
-
             reactionsList.$loaded(function () {
                 var data = {};
                 users.$loaded(function () {
                     var questions = header.template.questions;
-
                     for (var questionID in questions) {
                         var question = questions[questionID];
                         for (var answerID in question.answers) {
@@ -83,17 +79,16 @@
                                 dataEntry.userMail = users[reaction.$id].email;
 
 
-                                if (dataEntry.answerCulture === "active") {
+                                /*if (dataEntry.answerCulture === "active") {
                                     $scope.pointsReactive = + $scope.pointsReactive;
-                                }
+                                }*/
 
 
-                                console.log($scope.pointsReactive)
                             });
                         });
                     });
 
-                    $scope.data = data;
+                    $scope.data = data
                 });
             });
         });
