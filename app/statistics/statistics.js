@@ -77,43 +77,10 @@
                     $scope.data = result;
                 });
             });
-        });
+        })
         
-        $scope.culture(userID) {
-            var localData;
-            
-            if(userID){
-                localData = _.filter($scope.data, function(item){ item.userID === userID });
-            } else {
-                localData = $scope.data;
-            }
-            
-            var reduced = _.reduce(localData, function(result, value) {
-                var culture = value.answerCulture;
-                /* If culture points do not exist yet, initialize it to 0 */
-                if(result[culture] === undefined) {
-                    result[culture] = 0;
-                }
-                
-                result[culture] += 1;
-                return result;
-            }, {});
-            
-            // var activePoints = reduced['active'];
-            // var reactivePoints = reduced['reactive'];
-            // var proactivePoints = reduced['proactive'];
-            
-            // $scope.dataPie[0] = proactivePoints;
-            // $scope.dataPie[1] = activePoints;
-            // $scope.dataPie[2] = reactivePoints;
-            
-            var i = 0;
-            for(var name in reduced) {
-                $scope.labelsPie[i] = name;
-                $scope.dataPie[i] = reduced[name];
-                i++;
-            }
-        }
+       
+        
     }]);
 
     app.config(['$routeProvider', function ($routeProvider) {
