@@ -51,6 +51,7 @@ console.log(answersObject)
         header.$loaded(function () {
             reactionsList.$loaded(function () {
                 var data = {};
+                var result = [];
                 users.$loaded(function () {
                     var questions = header.template.questions;
                     for (var questionID in questions) {
@@ -72,12 +73,13 @@ console.log(answersObject)
                     angular.forEach(reactionsList, function (reaction) {
                         angular.forEach(reaction, function (question, questionID) {
                             angular.forEach(question, function (answer, answerID) {
-                                var dataEntry = data[questionID + '|' + answerID];
+                                var dataEntry = _.clone(data[questionID + '|' + answerID]);
                                 dataEntry.answerResult = answer;
                                 dataEntry.userID = reaction.$id;
                                 dataEntry.userName = users[reaction.$id].name;
                                 dataEntry.userMail = users[reaction.$id].email;
 
+                                result.push(dataEntry);
 
                                 /*if (dataEntry.answerCulture === "active") {
                                     $scope.pointsReactive = + $scope.pointsReactive;
@@ -88,7 +90,7 @@ console.log(answersObject)
                         });
                     });
 
-                    $scope.data = data
+                    $scope.data = result;
                 });
             });
         });
