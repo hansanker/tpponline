@@ -24,23 +24,7 @@
         var reactionsList = $firebaseArray(fbutil.ref().child('SurveyReactions').child(headerID));
         var users = $firebaseObject(fbutil.ref().child('users'));
 
-
-
-var answersRef = [];
-answersRef = fbutil.ref().child('SurveyReactions').child(headerID);
-var answersObject = $firebaseArray(answersRef);
-console.log(answersObject)
-        $scope.testaa = [];
-
-      $scope.test2 = function () {
-            
-            $scope.testaa = _.map(answersObject, function (value) {
-                return value
-            });
-
-        }
         
-       
 
 
         $scope.labelsPie = ["Proactief", "Actief", "Reactief"];
