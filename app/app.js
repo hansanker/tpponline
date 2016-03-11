@@ -16,7 +16,8 @@ angular.module('myApp', [
     'myApp.measure',
     'myApp.statistics',
     'ngMaterial',
-    'chart.js'
+    'chart.js',
+    'smart-table'
  
    
   ])

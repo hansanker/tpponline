@@ -1,34 +1,99 @@
 <h2>Statistics Specification</h2>
- <md-button  ng-click="culture()" >start</md-button>
- 
-<div >
-    <h3>Tabel voorbeeld</h3>
-    <table>
-        <thead>
-        <th>Question ID</th>
-        <th>Question Title</th>
-        <th>Naam persoon</th>
-        <th>Email</th>
-        <th>Culture</th>
-        <th>Points</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="entry in data">
-            <td>{{entry.questionID}}</td>
-            <td>{{entry.questionTitle}}</td>
-            <td>{{entry.userName}}</td>
-            <td>{{entry.userMail}}</td>
-            <td>{{entry.answerCulture}}</td>
-            <td>{{entry.answerResult}}</td>
-        </tr>
-        </tbody>
-    </table>
+<div layout="column">
 
-    <h3>CSV voorbeeld</h3>
-    <div ng-repeat="entry in data">{{ entry.questionID + ', "' + entry.questionTitle + '", ' + entry.userName + '", '}}</div>
+    <div layout="row" layout-padding>
+        <canvas id="bar" class="chart chart-bar" height="300px" width="500px" chart-colours="chartData.color" chart-options="chartData.options"
+        chart-data="chartData.data" chart-labels="chartData.labels"></canvas>
+        <canvas id="pie" align="right" class="chart chart-pie" height="200px" chart-colours="colorPie" chart-legend="false" chart-data="dataPie"
+        chart-labels="labelsPie"></canvas>
+
+    </div>
+
+    <div>
+        <h3>Tabel voorbeeld</h3>
+        <table>
+            <thead>
+                <th>Question ID</th>
+                <th>Question Title</th>
+                <th>Naam persoon</th>
+                <th>Email</th>
+                <th>Culture</th>
+                <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID</td>
+                    <td>titel</td>
+                    <td>user</td>
+                    <td>mail}</td>
+                    <td>cultuur</td>
+                    <td>reactie</td>
+                </tr>
+                <tr ng-repeat="entry in data">
+                    <td>{{entry.questionID}}</td>
+                    <td>{{entry.questionTitle}}</td>
+                    <td>{{entry.userName}}</td>
+                    <td>{{entry.userMail}}</td>
+                    <td>{{entry.answerCulture}}</td>
+                    <td>{{entry.answerResult}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>CSV voorbeeld</h3>
+        <div>Persoon;Bedrijf;Vraag ID;entry.Vraag titel;Vraag onderwerp;Vraag thema;Antwoord ID;Antwoord titel;Antwoord cultuur;Reactie</div>
+        <div ng-repeat="entry in data">{{ entry.userName + ';' + entry.company + ';' + entry.questionID + ';' + entry.questionTitle + ';' + entry.questionSubject
+            + ';' + entry.questionTheme + ';' + entry.answerID + ';' + entry.answerTitle + ';' + entry.answerCulture + ';'
+            + entry.answerResult }}</div>
+    </div>
+
+
+
+    <!--
+ <md-card style="margin:0px">
+            <md-subheader>Filter by search</md-subheader>
+
+            <md-input-container style="margin:15px;">
+                <label>Search</label>
+                <input type="text" ng-model="filterName">
+            </md-input-container>
+
+            <div ng-hide="true">
+                <!--{{(filteredItems = (data | filter: filterName))}}-->
+    <!--                {{(filteredItems = (data))}}
+            </div>
+        </md-card>
+  <mdt-table mdt-row="{'data',
+                      'table-row-id-key': 'questionTitle',
+                      'column-keys': ['questionTitle', 'questionTitle']}">
+    <mdt-header-row>
+      <mdt-column align-rule="left">Dessert (100g serving)</mdt-column>
+      <mdt-column align-rule="right">Calories</mdt-column>
+
+    </mdt-header-row>
+  </mdt-table>-->
+
+
 </div>
 
-{{testaa | json}}
+<!--
 
-<canvas id="pie" class="chart chart-pie" chart-data="dataPie" chart-labels="labelsPie"></canvas> 
+<table st-table="data" class="table table-striped">
+    <thead>
+
+        <tr>
+            <th>
+                <input st-search="questionTitle" placeholder="zoek op vraag" class="input-sm form-control" type="search" />
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="row in data">
+            <td>{{row.questionTitle}}</td>
+
+
+        </tr>
+    </tbody>
+</table>-->
